@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.geometry.Insets?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:id="sidebarRoot"
+      fx:controller="org.example.controllers.SidebarController"
+      styleClass="sidebar">
+
+    <!-- ══ LOGO ══ -->
+    <HBox fx:id="logoBox" styleClass="sidebar-logo-box" alignment="CENTER_LEFT" spacing="10"
+          VBox.vgrow="NEVER">
+        <!-- Logo complet (sidebar ouverte) -->
+        <ImageView fx:id="logoFull" fitHeight="60" preserveRatio="true" visible="true" managed="true">
+            <Image url="/images/etap_logo.png"/>
+        </ImageView>
+        <!-- Logo icône seul (sidebar repliée) -->
+        <ImageView fx:id="logoIcon" fitWidth="25" fitHeight="25" preserveRatio="true"
+                   visible="false" managed="false"
+                   style="-fx-translate-x: 10px;">
+            <Image url="/images/et_logo.png"/>
+        </ImageView>
+
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button fx:id="toggleBtn" styleClass="sidebar-toggle-btn" onAction="#handleToggle">
+            <graphic><FontIcon fx:id="toggleIcon" iconLiteral="mdi2m-menu" iconSize="16"/></graphic>
+        </Button>
+    </HBox>
+
+    <!-- ══ NAVIGATION ══ -->
+    <ScrollPane fx:id="scrollPane" VBox.vgrow="ALWAYS" fitToWidth="true"
+                style="-fx-background-color:transparent; -fx-background:transparent;"
+                hbarPolicy="NEVER" vbarPolicy="NEVER">
+        <VBox fx:id="navContent">
+
+            <!-- PRINCIPAL -->
+            <Label fx:id="secPrincipal" text="PRINCIPAL" styleClass="sidebar-section"/>
+
+            <Button fx:id="btnDashboard" styleClass="sidebar-nav-item" maxWidth="Infinity" onAction="#nav">
+                <graphic><FontIcon iconLiteral="mdi2v-view-dashboard-outline" iconSize="18"/></graphic>
+                <tooltip><Tooltip text="Tableau de bord"/></tooltip>
+            </Button>
+            <Button fx:id="btnMateriels" styleClass="sidebar-nav-item" maxWidth="Infinity" onAction="#nav">
+                <graphic><FontIcon iconLiteral="mdi2p-package-variant-closed" iconSize="18"/></graphic>
+                <tooltip><Tooltip text="Matériels"/></tooltip>
+            </Button>
+            <Button fx:id="btnStock" styleClass="sidebar-nav-item" maxWidth="Infinity" onAction="#nav">
+                <graphic><FontIcon iconLiteral="mdi2a-archive-outline" iconSize="18"/></graphic>
+                <tooltip><Tooltip text="Stock"/></tooltip>
+            </Button>
+            <Button fx:id="btnDemandes" styleClass="sidebar-nav-item" maxWidth="Infinity" onAction="#nav">
+                <graphic><FontIcon iconLiteral="mdi2f-file-document-outline" iconSize="18"/></graphic>
+                <tooltip><Tooltip text="Demandes"/></tooltip>
+            </Button>
+            <Button fx:id="btnAffectations" styleClass="sidebar-nav-item" maxWidth="Infinity" onAction="#nav">
+                <graphic><FontIcon iconLiteral="mdi2a-account-arrow-right-outline" iconSize="18"/></graphic>
+                <tooltip><Tooltip text="Affectations"/></tooltip>
+            </Button>
+            <Button fx:id="btnFournisseurs" styleClass="sidebar-nav-item" maxWidth="Infinity" onAction="#nav">
+                <graphic><FontIcon iconLiteral="mdi2t-truck-outline" iconSize="18"/></graphic>
+                <tooltip><Tooltip text="Fournisseurs"/></tooltip>
+            </Button>
+            <Button fx:id="btnRecherche" styleClass="sidebar-nav-item" maxWidth="Infinity" onAction="#nav">
+                <graphic><FontIcon iconLiteral="mdi2m-magnify" iconSize="18"/></graphic>
+                <tooltip><Tooltip text="Recherche"/></tooltip>
+            </Button>
+
+            <!-- ADMINISTRATION -->
+            <Label fx:id="secAdmin" text="ADMINISTRATION" styleClass="sidebar-section"/>
+
+            <Button fx:id="btnRapports" styleClass="sidebar-nav-item" maxWidth="Infinity" onAction="#nav">
+                <graphic><FontIcon iconLiteral="mdi2c-chart-bar" iconSize="18"/></graphic>
+                <tooltip><Tooltip text="Rapports"/></tooltip>
+            </Button>
+            <Button fx:id="btnUtilisateurs" styleClass="sidebar-nav-item" maxWidth="Infinity" onAction="#nav">
+                <graphic><FontIcon iconLiteral="mdi2a-account-group-outline" iconSize="18"/></graphic>
+                <tooltip><Tooltip text="Utilisateurs"/></tooltip>
+            </Button>
+
+            <!-- COMPTE -->
+            <Label fx:id="secCompte" text="COMPTE" styleClass="sidebar-section"/>
+
+            <Button fx:id="btnProfil" styleClass="sidebar-nav-item" maxWidth="Infinity" onAction="#nav">
+                <graphic><FontIcon iconLiteral="mdi2a-account-outline" iconSize="18"/></graphic>
+                <tooltip><Tooltip text="Profil"/></tooltip>
+            </Button>
+            <Button fx:id="btnParametres" styleClass="sidebar-nav-item" maxWidth="Infinity" onAction="#nav">
+                <graphic><FontIcon iconLiteral="mdi2c-cog-outline" iconSize="18"/></graphic>
+                <tooltip><Tooltip text="Paramètres"/></tooltip>
+            </Button>
+
+        </VBox>
+    </ScrollPane>
+
+    <!-- ══ DÉCONNEXION ══ -->
+    <Region VBox.vgrow="ALWAYS"/>
+    <Separator/>
+    <Button fx:id="btnLogout" styleClass="sidebar-logout" maxWidth="Infinity" onAction="#handleLogout">
+        <graphic><FontIcon iconLiteral="mdi2l-logout" iconSize="18"/></graphic>
+        <tooltip><Tooltip text="Déconnexion"/></tooltip>
+    </Button>
+    <VBox.margin><Insets bottom="8"/></VBox.margin>
+
+</VBox>

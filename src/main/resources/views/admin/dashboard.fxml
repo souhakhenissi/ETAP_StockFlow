@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.controllers.AdminDashboardController"
+            style="-fx-background-color: #f0f4fa;"
+            prefWidth="1280" prefHeight="800">
+
+    <!-- ══ SIDEBAR — fixe à gauche, ne se recharge jamais ══ -->
+    <left>
+        <fx:include fx:id="sidebar" source="../components/Sidebar.fxml"/>
+    </left>
+
+    <!-- ══ ZONE CENTRALE — topbar fixe + contenu dynamique ══ -->
+    <center>
+        <VBox style="-fx-background-color: #f0f4fa;">
+
+            <!-- Topbar fixe en haut — ne se recharge jamais -->
+            <fx:include fx:id="topbar" source="../components/Topbar.fxml"/>
+
+            <!-- contentPane : seule cette zone change à chaque navigation -->
+            <!-- StackPane permet de superposer les modaux et toasts par-dessus -->
+            <StackPane fx:id="contentPane" VBox.vgrow="ALWAYS"
+                       style="-fx-background-color: #f0f4fa;"/>
+
+        </VBox>
+    </center>
+
+</BorderPane>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <?import javafx.scene.layout.*?>
+        <?import javafx.scene.control.*?>
+        <?import javafx.scene.image.ImageView?>
+        <?import javafx.geometry.Insets?>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.controllers.UtilisateurFormController"
+      styleClass="modal-card" spacing="0" maxWidth="680" minWidth="620"  maxHeight="300">
+
+<!-- Header -->
+<HBox styleClass="modal-header" alignment="CENTER_LEFT" spacing="12">
+    <Label fx:id="formTitle" text="Nouvel utilisateur" styleClass="modal-title" HBox.hgrow="ALWAYS"/>
+    <Button text="✕" styleClass="topbar-icon-btn" onAction="#handleCancel"
+            style="-fx-font-size:14px -fx-translate-x: 80px;"/>
+</HBox>
+
+<!-- Body -->
+<HBox styleClass="modal-body" spacing="24">
+
+    <!-- Colonne gauche : champs -->
+    <VBox spacing="14" HBox.hgrow="ALWAYS">
+
+        <!-- Ligne nom + prénom -->
+        <HBox spacing="12">
+            <VBox spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="Nom *" styleClass="form-label"/>
+                <TextField fx:id="nomField" styleClass="form-input" promptText="Ben Ali"/>
+                <Label fx:id="errNom" styleClass="field-error" visible="false" managed="false"/>
+            </VBox>
+            <VBox spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="Prénom *" styleClass="form-label"/>
+                <TextField fx:id="prenomField" styleClass="form-input" promptText="Skander"/>
+                <Label fx:id="errPrenom" styleClass="field-error" visible="false" managed="false"/>
+            </VBox>
+        </HBox>
+
+        <!-- Email -->
+        <VBox spacing="4">
+            <Label text="Adresse email *" styleClass="form-label"/>
+            <TextField fx:id="emailField" styleClass="form-input"
+                       promptText="skander.benali@etap.com.tn"/>
+            <Label fx:id="errEmail" styleClass="field-error" visible="false" managed="false"/>
+        </VBox>
+
+        <!-- Mot de passe -->
+        <HBox spacing="12">
+            <VBox spacing="4" HBox.hgrow="ALWAYS">
+                <Label fx:id="mdpLabel" text="Mot de passe *" styleClass="form-label"/>
+                <PasswordField fx:id="passwordField" styleClass="form-input" promptText="Min. 8 caractères"/>
+                <Label fx:id="errPassword" styleClass="field-error" visible="false" managed="false"/>
+            </VBox>
+            <VBox spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="Confirmer *" styleClass="form-label"/>
+                <PasswordField fx:id="confirmField" styleClass="form-input" promptText="Répéter le mot de passe"/>
+                <Label fx:id="errConfirm" styleClass="field-error" visible="false" managed="false"/>
+            </VBox>
+        </HBox>
+
+        <!-- Rôle + Statut -->
+        <HBox spacing="12">
+            <VBox spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="Rôle *" styleClass="form-label"/>
+                <ComboBox fx:id="roleCombo" styleClass=" filter-combo" maxWidth="Infinity"/>
+            </VBox>
+            <VBox spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="Statut *" styleClass="form-label"/>
+                <ComboBox fx:id="statutCombo" styleClass=" filter-combo" maxWidth="Infinity"/>
+            </VBox>
+        </HBox>
+
+        <!-- Site -->
+        <VBox spacing="4">
+            <Label text="Site affecté *" styleClass="form-label"/>
+            <ComboBox fx:id="siteCombo" styleClass=" filter-combo" maxWidth="Infinity"/>
+        </VBox>
+
+    </VBox>
+</HBox>
+
+<!-- Footer -->
+<HBox styleClass="modal-footer" spacing="10" alignment="CENTER_RIGHT">
+    <Button text="Annuler" styleClass="btn-secondary" onAction="#handleCancel"
+            style="-fx-padding:9 24;"/>
+    <Button fx:id="saveBtn" text="Enregistrer" styleClass="btn-primary"
+            onAction="#handleSave" style="-fx-padding:9 24;"/>
+</HBox>
+
+</VBox>

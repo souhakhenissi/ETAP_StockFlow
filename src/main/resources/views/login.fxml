@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.web.WebView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.shape.Rectangle?>
+
+<HBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.controllers.LoginController"
+      prefWidth="1100" prefHeight="700">
+
+    <!-- ══════════════════════════════════════════════════
+         PANNEAU GAUCHE — Branding ETAP
+    ══════════════════════════════════════════════════ -->
+    <VBox styleClass="login-left-panel"
+          alignment="CENTER" spacing="0"
+          HBox.hgrow="SOMETIMES" prefWidth="580" minWidth="520">
+
+        <!-- Conteneur principal (logo + nom) qui prend tout l'espace et centre son contenu -->
+        <VBox VBox.vgrow="ALWAYS" alignment="CENTER" spacing="32">
+            <!-- Logo -->
+            <ImageView fx:id="etapLogo"
+                       fitWidth="500" fitHeight="350"
+                       preserveRatio="true" smooth="true">
+                <image><Image url="/images/logo_etap.png"/></image>
+            </ImageView>
+
+            <!-- Nom de l'application -->
+            <VBox alignment="CENTER" spacing="10">
+                <Label text="Système de gestion des stocks et équipements" styleClass="login-brand-tagline"/>
+            </VBox>
+
+            <!-- Séparateur décoratif -->
+            <Region prefHeight="1" prefWidth="80" styleClass="login-divider-line"/>
+        </VBox>
+
+        <!-- Copyright en bas (sans vgrow) -->
+        <VBox alignment="BOTTOM_CENTER">
+            <VBox.margin><Insets bottom="24"/></VBox.margin>
+            <Label text="© 2026 ETAP — Tous droits réservés." styleClass="login-copyright"/>
+        </VBox>
+    </VBox>
+
+    <!-- ══════════════════════════════════════════════════
+         PANNEAU DROIT — Formulaire de connexion
+    ══════════════════════════════════════════════════ -->
+    <VBox styleClass="login-right-panel"
+          alignment="CENTER" spacing="0"
+          HBox.hgrow="ALWAYS">
+
+        <VBox maxWidth="420" alignment="TOP_LEFT" spacing="0">
+
+            <!-- Titre -->
+            <VBox spacing="6">
+                <VBox.margin><Insets bottom="36"/></VBox.margin>
+                <Label text="Bienvenue" styleClass="login-welcome-title"/>
+                <Label text="Connectez-vous à votre espace ETAP StockFlow." styleClass="login-welcome-sub"/>
+            </VBox>
+
+            <!-- ── Email ── -->
+            <Label text="Adresse e-mail" styleClass="login-field-label"/>
+            <VBox.margin><Insets top="6" bottom="2"/></VBox.margin>
+            <TextField fx:id="emailField"
+                       promptText="prenom.nom@etap.com.tn"
+                       styleClass="login-input"/>
+            <Label fx:id="emailErrorLabel"
+                   styleClass="login-field-error"
+                   text="L'adresse e-mail est requise."
+                   visible="false" managed="false"/>
+            <VBox.margin><Insets bottom="18"/></VBox.margin>
+
+            <!-- ── Mot de passe ── -->
+            <Label text="Mot de passe" styleClass="login-field-label"/>
+            <VBox.margin><Insets top="12" bottom="2"/></VBox.margin>
+
+            <StackPane styleClass="login-password-wrapper" prefWidth="420" maxWidth="Infinity">
+                <VBox.margin><Insets bottom="20"/></VBox.margin>
+                <PasswordField fx:id="passwordField"
+                               promptText="••••••••"
+                               styleClass="login-input"
+                               maxWidth="Infinity"/>
+                <TextField fx:id="passwordVisibleField"
+                           promptText="••••••••"
+                           styleClass="login-input"
+                           visible="false" managed="false"
+                           maxWidth="Infinity"/>
+                <Button fx:id="togglePasswordBtn"
+                        text="👁"
+                        styleClass="login-eye-btn"
+                        onAction="#togglePasswordVisibility"
+                        StackPane.alignment="CENTER_RIGHT"/>
+            </StackPane>
+
+            <Label fx:id="passwordErrorLabel"
+                   styleClass="login-field-error"
+                   text="Le mot de passe est requis."
+                   visible="false" managed="false"/>
+            <VBox.margin><Insets bottom="10"/></VBox.margin>
+
+            <!-- Message d'erreur global -->
+            <Label fx:id="errorLabel"
+                   styleClass="login-error-banner"
+                   wrapText="true" visible="false" managed="false"/>
+            <VBox.margin><Insets bottom="8"/></VBox.margin>
+
+            <!-- Bouton Se connecter + Spinner -->
+            <HBox alignment="CENTER_LEFT" spacing="20">
+                <VBox.margin><Insets bottom="34"/></VBox.margin>
+                <Button fx:id="loginButton"
+                        text="Se connecter  →"
+                        styleClass="login-btn-primary"
+                        onAction="#handleLogin"
+                        defaultButton="true"
+                        maxWidth="Infinity"
+                        HBox.hgrow="ALWAYS"/>
+                <ProgressIndicator fx:id="spinner" prefWidth="26" prefHeight="26" visible="false"/>
+            </HBox>
+
+        </VBox>
+
+    </VBox>
+
+</HBox>

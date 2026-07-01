@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <?import javafx.scene.layout.*?>
+        <?import javafx.scene.control.*?>
+        <?import javafx.geometry.Insets?>
+<ScrollPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.controllers.GestionUtilisateursController"
+            styleClass="content-scroll" fitToWidth="true"
+            hbarPolicy="NEVER" vbarPolicy="AS_NEEDED">
+
+<VBox spacing="20" styleClass="content-area">
+
+    <!-- ══ EN-TÊTE ══ -->
+    <HBox alignment="CENTER_LEFT">
+        <VBox spacing="3" HBox.hgrow="ALWAYS">
+            <Label text="Utilisateurs" styleClass="section-title" style="-fx-font-size:20px;"/>
+            <Label text="Gérez les comptes et les accès de votre équipe." styleClass="section-sub"/>
+        </VBox>
+        <Button text="+ Nouveau utilisateur" styleClass="btn-primary"
+                onAction="#handleNouvelUtilisateur"/>
+    </HBox>
+
+    <!-- ══ STAT CARDS ══ -->
+    <HBox spacing="14">
+        <!-- Total -->
+        <VBox styleClass="stat-card" spacing="10" HBox.hgrow="ALWAYS">
+            <HBox spacing="12" alignment="CENTER_LEFT">
+                <StackPane styleClass="stat-card-icon-box stat-card-icon-box-blue">
+                    <Label text="👥" style="-fx-font-size:18px;"/>
+                </StackPane>
+                <VBox spacing="2">
+                    <Label fx:id="cardTotal" text="—" styleClass="stat-card-value"/>
+                    <Label text="Total utilisateurs" styleClass="stat-card-label"/>
+                </VBox>
+            </HBox>
+        </VBox>
+        <!-- Actifs -->
+        <VBox styleClass="stat-card" spacing="10" HBox.hgrow="ALWAYS">
+            <HBox spacing="12" alignment="CENTER_LEFT">
+                <StackPane styleClass="stat-card-icon-box stat-card-icon-box-green">
+                    <Label text="✅" style="-fx-font-size:18px;"/>
+                </StackPane>
+                <VBox spacing="2">
+                    <Label fx:id="cardActifs" text="—" styleClass="stat-card-value"
+                           style="-fx-text-fill:#16a34a;"/>
+                    <Label text="Comptes actifs" styleClass="stat-card-label"/>
+                </VBox>
+            </HBox>
+        </VBox>
+        <!-- Bloqués -->
+        <VBox styleClass="stat-card" spacing="10" HBox.hgrow="ALWAYS">
+            <HBox spacing="12" alignment="CENTER_LEFT">
+                <StackPane styleClass="stat-card-icon-box stat-card-icon-box-red">
+                    <Label text="🔒" style="-fx-font-size:18px;"/>
+                </StackPane>
+                <VBox spacing="2">
+                    <Label fx:id="cardBloques" text="—" styleClass="stat-card-value"
+                           style="-fx-text-fill:#dc2626;"/>
+                    <Label text="Comptes bloqués" styleClass="stat-card-label"/>
+                </VBox>
+            </HBox>
+        </VBox>
+        <!-- Intervenants -->
+        <VBox styleClass="stat-card" spacing="10" HBox.hgrow="ALWAYS">
+            <HBox spacing="12" alignment="CENTER_LEFT">
+                <StackPane styleClass="stat-card-icon-box stat-card-icon-box-purple">
+                    <Label text="🔧" style="-fx-font-size:18px;"/>
+                </StackPane>
+                <VBox spacing="2">
+                    <Label fx:id="cardIntervenants" text="—" styleClass="stat-card-value"
+                           style="-fx-text-fill:#7c3aed;"/>
+                    <Label text="Intervenants" styleClass="stat-card-label"/>
+                </VBox>
+            </HBox>
+        </VBox>
+    </HBox>
+
+    <!-- ══ RECHERCHE & FILTRES ══ -->
+    <HBox styleClass="search-container" spacing="12" alignment="CENTER_LEFT">
+        <TextField fx:id="searchField" styleClass="search-field"
+                   promptText="🔍   Rechercher par nom, email, site…"
+                   HBox.hgrow="ALWAYS"/>
+        <ComboBox fx:id="filterRole"   styleClass="filter-combo" prefWidth="155"/>
+        <ComboBox fx:id="filterStatut" styleClass="filter-combo" prefWidth="145"/>
+        <Button text="↺" styleClass="btn-secondary" onAction="#handleRefresh"
+                style="-fx-padding:8 12;"/>
+    </HBox>
+
+    <!-- ══ TABLE ══ -->
+    <TableView fx:id="tableUtilisateurs" styleClass="data-table"
+               VBox.vgrow="ALWAYS" minHeight="400">
+        <columns>
+            <TableColumn fx:id="colNom"      text="UTILISATEUR"    prefWidth="220"/>
+            <TableColumn fx:id="colEmail"    text="EMAIL"          prefWidth="210"/>
+            <TableColumn fx:id="colRole"     text="RÔLE"           prefWidth="120"/>
+            <TableColumn fx:id="colSite"     text="SITE"           prefWidth="160"/>
+            <TableColumn fx:id="colStatut"   text="STATUT"         prefWidth="110"/>
+            <TableColumn fx:id="colActions"  text="ACTIONS"        prefWidth="230"/>
+        </columns>
+        <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+        </columnResizePolicy>
+    </TableView>
+
+</VBox>
+</ScrollPane>

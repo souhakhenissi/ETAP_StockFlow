@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<ScrollPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.controllers.FournisseursController"
+            styleClass="content-scroll" fitToWidth="true"
+            hbarPolicy="NEVER" vbarPolicy="AS_NEEDED">
+
+    <VBox spacing="24" styleClass="content-area">
+
+        <!-- ══ EN-TÊTE ══ -->
+        <HBox alignment="CENTER_LEFT">
+            <VBox spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="Fournisseurs" styleClass="section-title"
+                       style="-fx-font-size:22px;"/>
+                <Label text="Annuaire des fournisseurs ETAP."
+                       styleClass="section-sub"/>
+            </VBox>
+            <Button onAction="#handleNouveauFournisseur" styleClass="btn-primary">
+                <graphic>
+                    <HBox spacing="8" alignment="CENTER">
+                        <FontIcon iconLiteral="mdi2p-plus" iconSize="15"/>
+                        <Label text="Nouveau fournisseur"
+                               style="-fx-text-fill:white;-fx-font-weight:bold;-fx-font-size:13px;"/>
+                    </HBox>
+                </graphic>
+            </Button>
+        </HBox>
+
+        <Separator style="-fx-opacity:0.5;"/>
+
+        <!-- ══ BARRE DE RECHERCHE ══ -->
+        <HBox spacing="12" alignment="CENTER_LEFT">
+            <HBox styleClass="search-bar-box" alignment="CENTER_LEFT"
+                  spacing="10" HBox.hgrow="ALWAYS" maxWidth="480">
+                <FontIcon iconLiteral="mdi2m-magnify" iconSize="17"
+                          style="-fx-icon-color:#9ca3af;"/>
+                <TextField fx:id="searchField"
+                           promptText="Rechercher un fournisseur…"
+                           styleClass="search-field-inline"
+                           HBox.hgrow="ALWAYS"/>
+            </HBox>
+
+            <!-- Compteur -->
+            <Label fx:id="countLabel" text="" styleClass="section-sub"
+                   style="-fx-font-size:12px;"/>
+        </HBox>
+
+        <!-- ══ GRILLE DES CARTES ══ -->
+        <!-- FlowPane pour disposition automatique en grille responsive -->
+        <FlowPane fx:id="cardsPane"
+                  hgap="18" vgap="18"
+                  prefWrapLength="9999"
+                  style="-fx-background-color:transparent;"/>
+
+        <!-- Message si aucun résultat -->
+        <VBox fx:id="emptyState" alignment="CENTER" spacing="12"
+              visible="false" managed="false"
+              style="-fx-padding:60 0;">
+            <FontIcon iconLiteral="mdi2t-truck-outline" iconSize="52"
+                      style="-fx-icon-color:#d1d5db;"/>
+            <Label text="Aucun fournisseur trouvé"
+                   style="-fx-font-size:16px;-fx-font-weight:bold;-fx-text-fill:#9ca3af;"/>
+            <Label text="Ajoutez votre premier fournisseur ou modifiez la recherche."
+                   style="-fx-font-size:13px;-fx-text-fill:#d1d5db;"/>
+        </VBox>
+
+    </VBox>
+</ScrollPane>

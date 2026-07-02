@@ -84,7 +84,6 @@
               <artifactId>javacv-platform</artifactId>
               <version>1.5.10</version>
             </dependency>
-
         <dependency>
             <groupId>org.kordamp.ikonli</groupId>
             <artifactId>ikonli-javafx</artifactId>

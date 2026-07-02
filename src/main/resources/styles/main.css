@@ -932,3 +932,109 @@
     -fx-wrap-text: true;
     -fx-pref-width: 420px;
 }
+
+/* ── Carte fournisseur ─────────────────────────────────────── */
+.fournisseur-card {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-border-color: #e2e8f0;
+    -fx-border-radius: 12;
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 6, 0, 0, 2);
+    -fx-cursor: default;
+}
+
+.fournisseur-card:hover {
+    -fx-border-color: #c7d7f0;
+    -fx-effect: dropshadow(gaussian, rgba(1,84,166,0.10), 12, 0, 0, 4);
+}
+
+.dark-theme .fournisseur-card {
+    -fx-background-color: #182038;
+    -fx-border-color: #263352;
+}
+
+.dark-theme .fournisseur-card:hover {
+    -fx-border-color: #3b5298;
+}
+
+/* Boutons d'action sur la carte */
+.card-action-btn-edit {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+    -fx-padding: 6;
+    -fx-background-radius: 6;
+    -fx-border-color: transparent;
+}
+
+.card-action-btn-edit:hover {
+    -fx-background-color: #eff6ff;
+}
+
+.card-action-btn-edit .ikonli-font-icon {
+    -fx-icon-color: #9ca3af;
+}
+
+.card-action-btn-edit:hover .ikonli-font-icon {
+    -fx-icon-color: #0154a6;
+}
+
+.card-action-btn-del {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+    -fx-padding: 6;
+    -fx-background-radius: 6;
+    -fx-border-color: transparent;
+}
+
+.card-action-btn-del:hover {
+    -fx-background-color: #fef2f2;
+}
+
+.card-action-btn-del .ikonli-font-icon {
+    -fx-icon-color: #9ca3af;
+}
+
+.card-action-btn-del:hover .ikonli-font-icon {
+    -fx-icon-color: #dc2626;
+}
+
+/* ── Barre de recherche inline ────────────────────────────── */
+.search-bar-box {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-border-color: #e2e8f0;
+    -fx-border-radius: 10;
+    -fx-border-width: 1;
+    -fx-padding: 10 16;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.04), 4, 0, 0, 1);
+}
+
+.search-bar-box:focused-within {
+    -fx-border-color: #0154a6;
+}
+
+.dark-theme .search-bar-box {
+    -fx-background-color: #182038;
+    -fx-border-color: #263352;
+}
+
+.search-field-inline {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-padding: 0;
+    -fx-font-size: 13px;
+    -fx-text-fill: #111827;
+    -fx-prompt-text-fill: #9ca3af;
+}
+
+.search-field-inline:focused {
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+    -fx-effect: none;
+}
+
+.dark-theme .search-field-inline {
+    -fx-text-fill: #e2e8f4;
+}

@@ -1038,3 +1038,94 @@
 .dark-theme .search-field-inline {
     -fx-text-fill: #e2e8f4;
 }
+
+/* ── Badge état matériel ─────────────────────────────────── */
+.badge-neuf {
+    -fx-background-color: #dbeafe;
+    -fx-text-fill: #1d4ed8;
+}
+
+/* badge-actif    → En service  (déjà dans main.css : #dcfce7 / #15803d) */
+/* badge-bloque   → En panne    (déjà dans main.css : #fee2e2 / #b91c1c) */
+/* badge-inactif  → Réformé     (déjà dans main.css : #f3f4f6 / #6b7280) */
+
+/* ── DatePicker ─────────────────────────────────────────── */
+.date-picker {
+    -fx-background-color: #f9fafb;
+    -fx-border-color: #e2e8f0;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-pref-height: 40px;
+}
+
+.date-picker:focused {
+    -fx-border-color: #0154a6;
+    -fx-border-width: 1.5;
+}
+
+.date-picker .text-field {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-font-size: 13px;
+    -fx-text-fill: #111827;
+    -fx-padding: 0 8;
+}
+
+.date-picker-popup > * > .month-year-pane {
+    -fx-background-color: #0154a6;
+}
+
+.date-picker-popup > * > .month-year-pane .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.date-picker-popup .day-name-cell,
+.date-picker-popup .day-cell {
+    -fx-font-size: 12px;
+}
+
+.date-picker-popup .selected {
+    -fx-background-color: #0154a6;
+    -fx-text-fill: white;
+    -fx-background-radius: 50;
+}
+
+.date-picker-popup .today {
+    -fx-border-color: #0154a6;
+    -fx-border-radius: 50;
+    -fx-border-width: 1.5;
+}
+
+.dark-theme .date-picker {
+    -fx-background-color: #263352;
+    -fx-border-color: #334466;
+}
+
+.dark-theme .date-picker .text-field {
+    -fx-text-fill: #e2e8f4;
+}
+
+/* ── Alerte quantité dans la table ──────────────────────── */
+.stock-alerte-row {
+    -fx-background-color: #fff7ed;
+}
+
+.dark-theme .stock-alerte-row {
+    -fx-background-color: #3d2400;
+}
+
+/* ── Référence monospace badge ───────────────────────────── */
+.ref-badge {
+    -fx-font-family: "Consolas", "Courier New", monospace;
+    -fx-font-size: 11.5px;
+    -fx-text-fill: #374151;
+    -fx-background-color: #f3f4f6;
+    -fx-background-radius: 4;
+    -fx-padding: 2 6;
+}
+
+.dark-theme .ref-badge {
+    -fx-text-fill: #cbd5e1;
+    -fx-background-color: #263352;
+}

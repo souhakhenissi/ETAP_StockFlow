@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<ScrollPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.controllers.MaterielsController"
+            styleClass="content-scroll" fitToWidth="true"
+            hbarPolicy="NEVER" vbarPolicy="AS_NEEDED">
+
+    <VBox spacing="20" styleClass="content-area">
+
+        <!-- ══ EN-TÊTE ══ -->
+        <HBox alignment="CENTER_LEFT">
+            <VBox spacing="3" HBox.hgrow="ALWAYS">
+                <Label text="Matériels" styleClass="section-title"
+                       style="-fx-font-size:20px;"/>
+                <Label text="Catalogue complet des équipements IT et réseau."
+                       styleClass="section-sub"/>
+            </VBox>
+            <Button onAction="#handleNouveauMateriel" styleClass="btn-primary">
+                <graphic>
+                    <HBox spacing="8" alignment="CENTER">
+                        <FontIcon iconLiteral="mdi2p-plus" iconSize="15"/>
+                        <Label text="Nouveau matériel"
+                               style="-fx-text-fill:white;-fx-font-weight:bold;-fx-font-size:13px;"/>
+                    </HBox>
+                </graphic>
+            </Button>
+        </HBox>
+
+        <!-- ══ STAT CARDS ══ -->
+        <HBox spacing="14">
+            <!-- Total -->
+            <VBox styleClass="stat-card" spacing="10" HBox.hgrow="ALWAYS">
+                <HBox spacing="12" alignment="CENTER_LEFT">
+                    <StackPane styleClass="stat-card-icon-box stat-card-icon-box-blue">
+                        <FontIcon iconLiteral="mdi2p-package-variant-closed" iconSize="20"
+                                  style="-fx-icon-color:#1d4ed8;"/>
+                    </StackPane>
+                    <VBox spacing="2">
+                        <Label fx:id="cardTotal" text="—" styleClass="stat-card-value"/>
+                        <Label text="Total matériels" styleClass="stat-card-label"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+            <!-- En service -->
+            <VBox styleClass="stat-card" spacing="10" HBox.hgrow="ALWAYS">
+                <HBox spacing="12" alignment="CENTER_LEFT">
+                    <StackPane styleClass="stat-card-icon-box stat-card-icon-box-green">
+                        <FontIcon iconLiteral="mdi2c-check-circle-outline" iconSize="20"
+                                  style="-fx-icon-color:#16a34a;"/>
+                    </StackPane>
+                    <VBox spacing="2">
+                        <Label fx:id="cardEnService" text="—" styleClass="stat-card-value"
+                               style="-fx-text-fill:#16a34a;"/>
+                        <Label text="En service" styleClass="stat-card-label"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+            <!-- En panne -->
+            <VBox styleClass="stat-card" spacing="10" HBox.hgrow="ALWAYS">
+                <HBox spacing="12" alignment="CENTER_LEFT">
+                    <StackPane styleClass="stat-card-icon-box stat-card-icon-box-red">
+                        <FontIcon iconLiteral="mdi2a-alert-circle-outline" iconSize="20"
+                                  style="-fx-icon-color:#dc2626;"/>
+                    </StackPane>
+                    <VBox spacing="2">
+                        <Label fx:id="cardEnPanne" text="—" styleClass="stat-card-value"
+                               style="-fx-text-fill:#dc2626;"/>
+                        <Label text="En panne" styleClass="stat-card-label"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+            <!-- Alertes stock -->
+            <VBox styleClass="stat-card" spacing="10" HBox.hgrow="ALWAYS">
+                <HBox spacing="12" alignment="CENTER_LEFT">
+                    <StackPane styleClass="stat-card-icon-box stat-card-icon-box-purple">
+                        <FontIcon iconLiteral="mdi2b-bell-alert-outline" iconSize="20"
+                                  style="-fx-icon-color:#d97706;"/>
+                    </StackPane>
+                    <VBox spacing="2">
+                        <Label fx:id="cardAlertes" text="—" styleClass="stat-card-value"
+                               style="-fx-text-fill:#d97706;"/>
+                        <Label text="Alertes stock" styleClass="stat-card-label"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+        </HBox>
+
+        <!-- ══ RECHERCHE & FILTRES ══ -->
+        <HBox styleClass="search-container" spacing="12" alignment="CENTER_LEFT">
+            <HBox styleClass="search-bar-box" alignment="CENTER_LEFT"
+                  spacing="10" HBox.hgrow="ALWAYS">
+                <FontIcon iconLiteral="mdi2m-magnify" iconSize="17"
+                          style="-fx-icon-color:#9ca3af;"/>
+                <TextField fx:id="searchField"
+                           promptText="Rechercher par nom, référence, marque, n° série…"
+                           styleClass="search-field-inline"
+                           HBox.hgrow="ALWAYS"/>
+            </HBox>
+            <ComboBox fx:id="filterCategorie" styleClass="filter-combo" prefWidth="170"
+                      promptText="Toutes catégories"/>
+            <ComboBox fx:id="filterEtat" styleClass="filter-combo" prefWidth="145"
+                      promptText="Tous états"/>
+            <Button styleClass="btn-secondary" onAction="#handleRefresh"
+                    style="-fx-padding:8 12;">
+                <graphic><FontIcon iconLiteral="mdi2r-refresh" iconSize="16"/></graphic>
+                <tooltip><Tooltip text="Reinitialiser"/></tooltip>
+            </Button>
+        </HBox>
+        <!-- ══ TABLE ══ -->
+        <TableView fx:id="tableMateriel" styleClass="data-table"
+                   VBox.vgrow="ALWAYS" minHeight="420">
+            <columns>
+                <TableColumn fx:id="colNom"        text="MATÉRIEL"       prefWidth="220"/>
+                <TableColumn fx:id="colReference"  text="RÉFÉRENCE"      prefWidth="130"/>
+                <TableColumn fx:id="colCategorie"  text="CATÉGORIE"      prefWidth="140"/>
+                <TableColumn fx:id="colMarque"     text="MARQUE / MODÈLE" prefWidth="150"/>
+                <TableColumn fx:id="colFournisseur" text="FOURNISSEUR"   prefWidth="140"/>
+                <TableColumn fx:id="colStock"      text="STOCK"          prefWidth="90"/>
+                <TableColumn fx:id="colEtat"       text="ÉTAT"           prefWidth="110"/>
+                <TableColumn fx:id="colActions"    text="ACTIONS"        prefWidth="180"/>
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+            </columnResizePolicy>
+        </TableView>
+
+    </VBox>
+</ScrollPane>

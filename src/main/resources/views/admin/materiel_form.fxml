@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.controllers.MaterielFormController"
+      styleClass="modal-card" spacing="0"
+      maxWidth="680" minWidth="620" maxHeight="300">
+
+    <!-- ══ HEADER ══ -->
+    <HBox styleClass="modal-header" alignment="CENTER_LEFT" spacing="12">
+        <StackPane style="-fx-background-color:#e8f0fb;-fx-background-radius:8;
+                          -fx-min-width:36px;-fx-max-width:36px;
+                          -fx-min-height:36px;-fx-max-height:36px;
+                          -fx-alignment:center;">
+            <FontIcon iconLiteral="mdi2p-package-variant-closed" iconSize="18"
+                      style="-fx-icon-color:#0154a6;"/>
+        </StackPane>
+        <Label fx:id="formTitle" text="Nouveau matériel"
+               styleClass="modal-title" HBox.hgrow="ALWAYS"/>
+        <Button onAction="#handleCancel" styleClass="topbar-icon-btn">
+            <graphic><FontIcon iconLiteral="mdi2c-close" iconSize="16"/></graphic>
+        </Button>
+    </HBox>
+
+    <!-- ══ BODY ══ -->
+    <VBox styleClass="modal-body" spacing="0">
+
+        <!-- Ligne 1 : Nom + Référence -->
+        <HBox spacing="14">
+            <VBox spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="Nom du matériel *" styleClass="form-label"/>
+                <TextField fx:id="nomField" styleClass="form-input"
+                           promptText="Ex: Switch 24 ports"/>
+                <Label fx:id="errNom" styleClass="field-error"
+                       visible="false" managed="false"/>
+            </VBox>
+            <VBox spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="Référence *" styleClass="form-label"/>
+                <TextField fx:id="referenceField" styleClass="form-input"
+                           promptText="Ex: SW-HP-24-001"/>
+                <Label fx:id="errReference" styleClass="field-error"
+                       visible="false" managed="false"/>
+            </VBox>
+        </HBox>
+        <VBox.margin><Insets bottom="14"/></VBox.margin>
+
+        <!-- Ligne 2 : Catégorie + Marque -->
+        <HBox spacing="14">
+            <VBox spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="Catégorie *" styleClass="form-label"/>
+                <ComboBox fx:id="categorieCombo" styleClass=" filter-combo"
+                          maxWidth="Infinity" editable="true"
+                          promptText="Choisir ou saisir…"/>
+                <Label fx:id="errCategorie" styleClass="field-error"
+                       visible="false" managed="false"/>
+            </VBox>
+            <VBox spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="Marque" styleClass="form-label"/>
+                <TextField fx:id="marqueField" styleClass="form-input"
+                           promptText="Ex: Cisco, HP, Dell…"/>
+            </VBox>
+        </HBox>
+        <VBox.margin><Insets bottom="14"/></VBox.margin>
+
+        <!-- Ligne 3 : Modèle + N° Série -->
+        <HBox spacing="14">
+            <VBox spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="Modèle" styleClass="form-label"/>
+                <TextField fx:id="modeleField" styleClass="form-input"
+                           promptText="Ex: Catalyst 2960-X"/>
+            </VBox>
+            <VBox spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="Numéro de série" styleClass="form-label"/>
+                <TextField fx:id="numeroSerieField" styleClass="form-input"
+                           promptText="Ex: SN-SW-001"/>
+            </VBox>
+        </HBox>
+        <VBox.margin><Insets bottom="14"/></VBox.margin>
+
+        <!-- Ligne 4 : État + Fournisseur -->
+        <HBox spacing="14">
+            <VBox spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="État *" styleClass="form-label"/>
+                <ComboBox fx:id="etatCombo" styleClass=" filter-combo"
+                          maxWidth="Infinity"/>
+                <Label fx:id="errEtat" styleClass="field-error"
+                       visible="false" managed="false"/>
+            </VBox>
+            <VBox spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="Fournisseur" styleClass="form-label"/>
+                <ComboBox fx:id="fournisseurCombo" styleClass=" filter-combo"
+                          maxWidth="Infinity" promptText="Sélectionner…"/>
+            </VBox>
+        </HBox>
+        <VBox.margin><Insets bottom="14"/></VBox.margin>
+
+        <!-- Ligne 5 : Quantité + Seuil + Date -->
+        <HBox spacing="14">
+            <VBox spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="Quantité en stock *" styleClass="form-label"/>
+                <TextField fx:id="quantiteField" styleClass="form-input"
+                           promptText="0"/>
+                <Label fx:id="errQuantite" styleClass="field-error"
+                       visible="false" managed="false"/>
+            </VBox>
+            <VBox spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="Seuil d'alerte" styleClass="form-label"/>
+                <TextField fx:id="seuilField" styleClass="form-input"
+                           promptText="2"/>
+            </VBox>
+            <VBox spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="Date d'acquisition" styleClass="form-label"/>
+                <DatePicker fx:id="datePicker" styleClass="form-input"
+                            promptText="jj/mm/aaaa" maxWidth="Infinity"/>
+            </VBox>
+        </HBox>
+
+    </VBox>
+
+    <!-- ══ FOOTER ══ -->
+    <HBox styleClass="modal-footer" spacing="10" alignment="CENTER_RIGHT">
+        <Button text="Annuler" styleClass="btn-secondary"
+                onAction="#handleCancel" style="-fx-padding:9 24;"/>
+        <Button fx:id="saveBtn" styleClass="btn-primary"
+                onAction="#handleSave" style="-fx-padding:9 24;">
+            <graphic>
+                <HBox spacing="8" alignment="CENTER">
+                    <FontIcon fx:id="saveIcon" iconLiteral="mdi2c-check" iconSize="14"/>
+                    <Label fx:id="saveBtnLabel" text="Enregistrer"
+                           style="-fx-text-fill:white;-fx-font-weight:bold;"/>
+                </HBox>
+            </graphic>
+        </Button>
+    </HBox>
+
+</VBox>

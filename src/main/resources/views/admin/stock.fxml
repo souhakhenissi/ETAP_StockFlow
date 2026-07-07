@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<ScrollPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.controllers.StockController"
+            styleClass="content-scroll" fitToWidth="true"
+            hbarPolicy="NEVER" vbarPolicy="AS_NEEDED">
+
+    <VBox spacing="20" styleClass="content-area">
+
+        <!-- EN-TETE -->
+        <HBox alignment="CENTER_LEFT">
+            <VBox spacing="3" HBox.hgrow="ALWAYS">
+                <Label text="Stock" styleClass="section-title" style="-fx-font-size:20px;"/>
+                <Label text="Entrees, sorties et alertes de stock." styleClass="section-sub"/>
+            </VBox>
+            <Button fx:id="btnNouveauMouvement" text="+ Nouveau mouvement"
+                    styleClass="btn-primary" onAction="#handleNouveauMouvement"/>
+        </HBox>
+
+        <!-- ALERTES STOCK BAS -->
+        <VBox fx:id="alertesBox" styleClass="alerte-stock-box" spacing="10"
+              visible="false" managed="false">
+            <HBox spacing="8" alignment="CENTER_LEFT">
+                <Label text="⚠" style="-fx-font-weight:bold;-fx-font-size:16px;-fx-text-fill:#92400e;"/>
+                <Label text="Alertes stock bas" style="-fx-font-weight:bold;-fx-font-size:14px;-fx-text-fill:#92400e;"/>
+            </HBox>
+            <FlowPane fx:id="alertesCardsPane" hgap="12" vgap="8"/>
+        </VBox>
+
+        <!-- ONGLETS ENTREES / SORTIES -->
+        <HBox styleClass="modal-body" spacing="0" alignment="CENTER">
+            <VBox.margin><Insets bottom="4"/></VBox.margin>
+            <HBox spacing="6" alignment="CENTER"
+                  style="-fx-background-color:#f3f4f6;-fx-background-radius:10;-fx-padding:5;">
+                <Button fx:id="tabEntrees" text="Entree"
+                        styleClass="tab-btn-active" onAction="#switchToEntrees"
+                        style="-fx-padding:8 32;-fx-font-size:13px;"/>
+                <Button fx:id="tabSorties" text="Sortie"
+                        styleClass="tab-btn-inactive" onAction="#switchToSorties"
+                        style="-fx-padding:8 32;-fx-font-size:13px;"/>
+            </HBox>
+        </HBox>
+
+        <!-- TABLE ENTREES -->
+        <TableView fx:id="tableEntrees" styleClass="data-table"
+                   VBox.vgrow="ALWAYS" minHeight="360">
+            <columns>
+                <TableColumn fx:id="colEntBon"        text="N BON"           prefWidth="160"/>
+                <TableColumn fx:id="colEntDate"       text="DATE"            prefWidth="140"/>
+                <TableColumn fx:id="colEntMateriel"   text="MATERIEL"        prefWidth="200"/>
+                <TableColumn fx:id="colEntFournisseur" text="FOURNISSEUR"    prefWidth="150"/>
+                <TableColumn fx:id="colEntQte"        text="QTE"             prefWidth="70"/>
+                <TableColumn fx:id="colEntPrix"       text="PRIX UNIT."      prefWidth="100"/>
+                <TableColumn fx:id="colEntMontant"    text="MONTANT"         prefWidth="110"/>
+                <TableColumn fx:id="colEntObs"        text="OBSERVATION"     prefWidth="140"/>
+                <TableColumn fx:id="colEntActions"    text="ACTIONS"         prefWidth="170"/>
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+            </columnResizePolicy>
+        </TableView>
+
+        <!-- TABLE SORTIES (cachee par defaut) -->
+        <TableView fx:id="tableSorties" styleClass="data-table"
+                   VBox.vgrow="ALWAYS" minHeight="360" visible="false" managed="false">
+            <columns>
+                <TableColumn fx:id="colSorBon"       text="N BON"           prefWidth="160"/>
+                <TableColumn fx:id="colSorDate"      text="DATE"            prefWidth="140"/>
+                <TableColumn fx:id="colSorMateriel"  text="MATERIEL"        prefWidth="200"/>
+                <TableColumn fx:id="colSorDemande"   text="N DEMANDE"       prefWidth="170"/>
+                <TableColumn fx:id="colSorSite"      text="SITE"            prefWidth="140"/>
+                <TableColumn fx:id="colSorQte"       text="QTE"             prefWidth="70"/>
+                <TableColumn fx:id="colSorObs"       text="OBSERVATION"     prefWidth="140"/>
+                <TableColumn fx:id="colSorActions"   text="ACTIONS"         prefWidth="170"/>
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+            </columnResizePolicy>
+        </TableView>
+
+    </VBox>
+</ScrollPane>

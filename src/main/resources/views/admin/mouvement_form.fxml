@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.controllers.MouvementFormController"
+      styleClass="modal-card" spacing="0"
+      maxWidth="560" minWidth="500" maxHeight="300">
+
+    <!-- HEADER -->
+    <HBox styleClass="modal-header" alignment="CENTER_LEFT" spacing="12">
+        <Label fx:id="formTitle" text="Nouveau mouvement"
+               styleClass="modal-title" HBox.hgrow="ALWAYS"/>
+        <Button onAction="#handleCancel" styleClass="topbar-icon-btn">
+            <graphic><FontIcon iconLiteral="mdi2c-close" iconSize="16"/></graphic>
+            <tooltip><Tooltip text="Fermer"/></tooltip>
+        </Button>
+    </HBox>
+
+    <!-- TOGGLE ENTREE / SORTIE -->
+    <HBox styleClass="modal-body" spacing="0" alignment="CENTER">
+        <VBox.margin><Insets bottom="4"/></VBox.margin>
+        <HBox spacing="6" alignment="CENTER"
+              style="-fx-background-color:#f3f4f6;-fx-background-radius:10;-fx-padding:5;">
+            <Button fx:id="toggleEntree" text="Entree"
+                    styleClass="tab-btn-active" onAction="#switchToEntree"
+                    style="-fx-padding:8 32;-fx-font-size:13px;"/>
+            <Button fx:id="toggleSortie" text="Sortie"
+                    styleClass="tab-btn-inactive" onAction="#switchToSortie"
+                    style="-fx-padding:8 32;-fx-font-size:13px;"/>
+        </HBox>
+    </HBox>
+
+    <!-- FORMULAIRE ENTREE -->
+    <VBox fx:id="formEntree" styleClass="modal-body" spacing="14">
+
+        <!-- Matériel -->
+        <VBox spacing="4">
+            <Label text="Materiel *" styleClass="form-label"/>
+            <ComboBox fx:id="entMatérielCombo" styleClass="filter-combo"
+                      maxWidth="Infinity" promptText="Choisir un materiel..."/>
+            <Label fx:id="entErrMateriel" styleClass="field-error"
+                   visible="false" managed="false"/>
+        </VBox>
+
+        <!-- Quantité + Prix -->
+        <HBox spacing="14">
+            <VBox spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="Quantite *" styleClass="form-label"/>
+                <TextField fx:id="entQuantite" styleClass="form-input" promptText="0"/>
+                <Label fx:id="entErrQuantite" styleClass="field-error"
+                       visible="false" managed="false"/>
+            </VBox>
+            <VBox spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="Prix unitaire (TND)" styleClass="form-label"/>
+                <TextField fx:id="entPrix" styleClass="form-input" promptText="0.000"/>
+            </VBox>
+        </HBox>
+
+        <!-- Fournisseur -->
+        <VBox spacing="4">
+            <Label text="Fournisseur" styleClass="form-label"/>
+            <ComboBox fx:id="entFournisseurCombo" styleClass="filter-combo"
+                      maxWidth="Infinity" promptText="Choisir un fournisseur..."/>
+        </VBox>
+
+        <!-- Observation -->
+        <VBox spacing="4">
+            <Label text="Observation" styleClass="form-label"/>
+            <TextArea fx:id="entObservation" styleClass="form-input"
+                      promptText="Observation optionnelle..."
+                      prefRowCount="2" maxHeight="70"
+                      style="-fx-pref-height:70px;"/>
+        </VBox>
+
+    </VBox>
+
+    <!-- FORMULAIRE SORTIE -->
+    <VBox fx:id="formSortie" styleClass="modal-body" spacing="14"
+          visible="false" managed="false">
+
+        <!-- N° Demande -->
+        <VBox spacing="4">
+            <Label text="N Demande" styleClass="form-label"/>
+            <ComboBox fx:id="sorDemandeCombo" styleClass="filter-combo"
+                      maxWidth="Infinity" editable="true"
+                      promptText="Ex: DEM-20260629-b6b37d"/>
+            <Label fx:id="sorErrDemande" styleClass="field-error"
+                   visible="false" managed="false"/>
+        </VBox>
+
+        <!-- Matériel -->
+        <VBox spacing="4">
+            <Label text="Materiel *" styleClass="form-label"/>
+            <ComboBox fx:id="sorMaterielCombo" styleClass="filter-combo"
+                      maxWidth="Infinity" promptText="Choisir un materiel..."/>
+            <Label fx:id="sorErrMateriel" styleClass="field-error"
+                   visible="false" managed="false"/>
+        </VBox>
+
+        <!-- Quantité + Site -->
+        <HBox spacing="14">
+            <VBox spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="Quantite *" styleClass="form-label"/>
+                <TextField fx:id="sorQuantite" styleClass="form-input" promptText="0"/>
+                <Label fx:id="sorErrQuantite" styleClass="field-error"
+                       visible="false" managed="false"/>
+            </VBox>
+            <VBox spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="Site ETAP *" styleClass="form-label"/>
+                <ComboBox fx:id="sorSiteCombo" styleClass="filter-combo"
+                          maxWidth="Infinity"/>
+                <Label fx:id="sorErrSite" styleClass="field-error"
+                       visible="false" managed="false"/>
+            </VBox>
+        </HBox>
+
+        <!-- Observation -->
+        <VBox spacing="4">
+            <Label text="Observation" styleClass="form-label"/>
+            <TextArea fx:id="sorObservation" styleClass="form-input"
+                      promptText="Observation optionnelle..."
+                      prefRowCount="2" maxHeight="70"
+                      style="-fx-pref-height:70px;"/>
+        </VBox>
+
+    </VBox>
+
+    <!-- FOOTER -->
+    <HBox styleClass="modal-footer" spacing="10" alignment="CENTER_RIGHT">
+        <Button text="Annuler" styleClass="btn-secondary"
+                onAction="#handleCancel" style="-fx-padding:9 24;"/>
+        <Button fx:id="saveBtn" text="Enregistrer"
+                styleClass="btn-primary" onAction="#handleSave"
+                style="-fx-padding:9 24;"/>
+    </HBox>
+
+</VBox>

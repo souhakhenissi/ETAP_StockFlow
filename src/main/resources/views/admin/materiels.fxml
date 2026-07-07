@@ -22,7 +22,7 @@
             <Button onAction="#handleNouveauMateriel" styleClass="btn-primary">
                 <graphic>
                     <HBox spacing="8" alignment="CENTER">
-                        <FontIcon iconLiteral="mdi2p-plus" iconSize="15"/>
+                        <FontIcon iconLiteral="mdi2p-plus" iconSize="15" iconColor="aliceblue"/>
                         <Label text="Nouveau matériel"
                                style="-fx-text-fill:white;-fx-font-weight:bold;-fx-font-size:13px;"/>
                     </HBox>
@@ -32,71 +32,72 @@
 
         <!-- ══ STAT CARDS ══ -->
         <HBox spacing="14">
-            <!-- Total -->
-            <VBox styleClass="stat-card" spacing="10" HBox.hgrow="ALWAYS">
-                <HBox spacing="12" alignment="CENTER_LEFT">
-                    <StackPane styleClass="stat-card-icon-box stat-card-icon-box-blue">
-                        <FontIcon iconLiteral="mdi2p-package-variant-closed" iconSize="20"
-                                  style="-fx-icon-color:#1d4ed8;"/>
-                    </StackPane>
-                    <VBox spacing="2">
-                        <Label fx:id="cardTotal" text="—" styleClass="stat-card-value"/>
-                        <Label text="Total matériels" styleClass="stat-card-label"/>
-                    </VBox>
-                </HBox>
-            </VBox>
-            <!-- En service -->
-            <VBox styleClass="stat-card" spacing="10" HBox.hgrow="ALWAYS">
-                <HBox spacing="12" alignment="CENTER_LEFT">
-                    <StackPane styleClass="stat-card-icon-box stat-card-icon-box-green">
-                        <FontIcon iconLiteral="mdi2c-check-circle-outline" iconSize="20"
-                                  style="-fx-icon-color:#16a34a;"/>
-                    </StackPane>
-                    <VBox spacing="2">
-                        <Label fx:id="cardEnService" text="—" styleClass="stat-card-value"
-                               style="-fx-text-fill:#16a34a;"/>
-                        <Label text="En service" styleClass="stat-card-label"/>
-                    </VBox>
-                </HBox>
-            </VBox>
-            <!-- En panne -->
-            <VBox styleClass="stat-card" spacing="10" HBox.hgrow="ALWAYS">
-                <HBox spacing="12" alignment="CENTER_LEFT">
-                    <StackPane styleClass="stat-card-icon-box stat-card-icon-box-red">
-                        <FontIcon iconLiteral="mdi2a-alert-circle-outline" iconSize="20"
-                                  style="-fx-icon-color:#dc2626;"/>
-                    </StackPane>
-                    <VBox spacing="2">
-                        <Label fx:id="cardEnPanne" text="—" styleClass="stat-card-value"
-                               style="-fx-text-fill:#dc2626;"/>
-                        <Label text="En panne" styleClass="stat-card-label"/>
-                    </VBox>
-                </HBox>
-            </VBox>
-            <!-- Alertes stock -->
-            <VBox styleClass="stat-card" spacing="10" HBox.hgrow="ALWAYS">
-                <HBox spacing="12" alignment="CENTER_LEFT">
-                    <StackPane styleClass="stat-card-icon-box stat-card-icon-box-purple">
-                        <FontIcon iconLiteral="mdi2b-bell-alert-outline" iconSize="20"
-                                  style="-fx-icon-color:#d97706;"/>
-                    </StackPane>
-                    <VBox spacing="2">
-                        <Label fx:id="cardAlertes" text="—" styleClass="stat-card-value"
-                               style="-fx-text-fill:#d97706;"/>
-                        <Label text="Alertes stock" styleClass="stat-card-label"/>
-                    </VBox>
-                </HBox>
-            </VBox>
-        </HBox>
+        <!-- Total -->
+        <VBox styleClass="stat-card" spacing="10" HBox.hgrow="ALWAYS">
+            <HBox spacing="12" alignment="CENTER_LEFT">
+                <StackPane styleClass="stat-card-icon-box stat-card-icon-box-blue">
+                    <!-- Émoji caisse/boîte -->
+                    <Label text="📦" style="-fx-font-size: 22px; -fx-font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji';" />
+                </StackPane>
+                <VBox spacing="2">
+                    <Label fx:id="cardTotal" text="—" styleClass="stat-card-value"/>
+                    <Label text="Total matériels" styleClass="stat-card-label"/>
+                </VBox>
+            </HBox>
+        </VBox>
+
+        <!-- En service -->
+        <VBox styleClass="stat-card" spacing="10" HBox.hgrow="ALWAYS">
+            <HBox spacing="12" alignment="CENTER_LEFT">
+                <StackPane styleClass="stat-card-icon-box stat-card-icon-box-green">
+                    <!-- Émoji coche verte -->
+                    <Label text="✅" style="-fx-font-size: 22px; -fx-font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji';" />
+                </StackPane>
+                <VBox spacing="2">
+                    <Label fx:id="cardEnService" text="—" styleClass="stat-card-value"
+                           style="-fx-text-fill:#16a34a;"/>
+                    <Label text="En service" styleClass="stat-card-label"/>
+                </VBox>
+            </HBox>
+        </VBox>
+
+        <!-- En panne -->
+        <VBox styleClass="stat-card" spacing="10" HBox.hgrow="ALWAYS">
+            <HBox spacing="12" alignment="CENTER_LEFT">
+                <StackPane styleClass="stat-card-icon-box stat-card-icon-box-red">
+                    <!-- Émoji alerte / panne -->
+                    <Label text="⚠️" style="-fx-font-size: 22px; -fx-font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji';" />
+                </StackPane>
+                <VBox spacing="2">
+                    <Label fx:id="cardEnPanne" text="—" styleClass="stat-card-value"
+                           style="-fx-text-fill:#dc2626;"/>
+                    <Label text="En panne" styleClass="stat-card-label"/>
+                </VBox>
+            </HBox>
+        </VBox>
+
+        <!-- Alertes stock -->
+        <VBox styleClass="stat-card" spacing="10" HBox.hgrow="ALWAYS">
+            <HBox spacing="12" alignment="CENTER_LEFT">
+                <StackPane styleClass="stat-card-icon-box stat-card-icon-box-purple">
+                    <!-- Émoji cloche -->
+                    <Label text="🔔" style="-fx-font-size: 22px; -fx-font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji';" />
+                </StackPane>
+                <VBox spacing="2">
+                    <Label fx:id="cardAlertes" text="—" styleClass="stat-card-value"
+                           style="-fx-text-fill:#d97706;"/>
+                    <Label text="Alertes stock" styleClass="stat-card-label"/>
+                </VBox>
+            </HBox>
+        </VBox>
+    </HBox>
 
         <!-- ══ RECHERCHE & FILTRES ══ -->
         <HBox styleClass="search-container" spacing="12" alignment="CENTER_LEFT">
             <HBox styleClass="search-bar-box" alignment="CENTER_LEFT"
                   spacing="10" HBox.hgrow="ALWAYS">
-                <FontIcon iconLiteral="mdi2m-magnify" iconSize="17"
-                          style="-fx-icon-color:#9ca3af;"/>
                 <TextField fx:id="searchField"
-                           promptText="Rechercher par nom, référence, marque, n° série…"
+                           promptText="🔍   Rechercher par nom, référence, marque, n° série…"
                            styleClass="search-field-inline"
                            HBox.hgrow="ALWAYS"/>
             </HBox>

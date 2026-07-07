@@ -964,7 +964,7 @@
     -fx-cursor: hand;
     -fx-padding: 6;
     -fx-background-radius: 6;
-    -fx-border-color: transparent;
+    -fx-border-color: #eff6ff;
 }
 
 .card-action-btn-edit:hover {
@@ -972,7 +972,7 @@
 }
 
 .card-action-btn-edit .ikonli-font-icon {
-    -fx-icon-color: #9ca3af;
+    -fx-icon-color: #1d4ed8;
 }
 
 .card-action-btn-edit:hover .ikonli-font-icon {
@@ -984,7 +984,7 @@
     -fx-cursor: hand;
     -fx-padding: 6;
     -fx-background-radius: 6;
-    -fx-border-color: transparent;
+    -fx-border-color: #fef2f2;
 }
 
 .card-action-btn-del:hover {
@@ -992,7 +992,7 @@
 }
 
 .card-action-btn-del .ikonli-font-icon {
-    -fx-icon-color: #9ca3af;
+    -fx-icon-color: #991b1b;
 }
 
 .card-action-btn-del:hover .ikonli-font-icon {
@@ -1128,4 +1128,99 @@
 .dark-theme .ref-badge {
     -fx-text-fill: #cbd5e1;
     -fx-background-color: #263352;
+}
+
+/* ── Boite alertes stock bas ─────────────────────────────── */
+.alerte-stock-box {
+    -fx-background-color: linear-gradient(to right, #fffbeb, #fef9ec);
+    -fx-border-color: #fcd34d;
+    -fx-border-width: 1;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+    -fx-padding: 16 20;
+    -fx-effect: dropshadow(gaussian, rgba(217,119,6,0.10), 6, 0, 0, 2);
+}
+
+.dark-theme .alerte-stock-box {
+    -fx-background-color: linear-gradient(to right, #2d1f00, #3d2800);
+    -fx-border-color: #92400e;
+}
+
+/* ── TextArea dans le formulaire ─────────────────────────── */
+.text-area.form-input {
+    -fx-background-color: #f9fafb;
+    -fx-border-color: #e2e8f0;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-font-size: 13px;
+    -fx-text-fill: #111827;
+}
+
+.text-area.form-input:focused {
+    -fx-border-color: #0154a6;
+    -fx-border-width: 1.5;
+    -fx-background-color: white;
+}
+
+.text-area.form-input .content {
+    -fx-background-color: transparent;
+    -fx-padding: 8 12;
+}
+
+.dark-theme .text-area.form-input {
+    -fx-background-color: #263352;
+    -fx-border-color: #334466;
+    -fx-text-fill: #e2e8f4;
+}
+
+.dark-theme .text-area.form-input .content {
+    -fx-background-color: transparent;
+}
+
+/* ── Badge type mouvement ─────────────────────────────────── */
+.badge-entree {
+    -fx-background-color: #dcfce7;
+    -fx-text-fill: #15803d;
+}
+
+.badge-sortie {
+    -fx-background-color: #fee2e2;
+    -fx-text-fill: #b91c1c;
+}
+
+/* ── Montant total vert ───────────────────────────────────── */
+.montant-label {
+    -fx-font-weight: bold;
+    -fx-text-fill: #16a34a;
+    -fx-font-size: 13px;
+}
+
+/* ── Numero bon monospace ─────────────────────────────────── */
+.bon-badge {
+    -fx-font-family: "Consolas", "Courier New", monospace;
+    -fx-font-size: 11px;
+    -fx-text-fill: #374151;
+    -fx-background-color: #f3f4f6;
+    -fx-background-radius: 4;
+    -fx-padding: 2 6;
+}
+
+.dark-theme .bon-badge {
+    -fx-text-fill: #cbd5e1;
+    -fx-background-color: #263352;
+}
+
+/* ── Numero demande badge bleu ────────────────────────────── */
+.demande-badge {
+    -fx-font-family: "Consolas", "Courier New", monospace;
+    -fx-font-size: 11px;
+    -fx-text-fill: #0154a6;
+    -fx-background-color: #e8f0fb;
+    -fx-background-radius: 4;
+    -fx-padding: 2 6;
+}
+
+.dark-theme .demande-badge {
+    -fx-text-fill: #93c5fd;
+    -fx-background-color: #1e3060;
 }

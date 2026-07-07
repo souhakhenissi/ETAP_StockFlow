@@ -22,7 +22,7 @@
             <Button onAction="#handleNouveauFournisseur" styleClass="btn-primary">
                 <graphic>
                     <HBox spacing="8" alignment="CENTER">
-                        <FontIcon iconLiteral="mdi2p-plus" iconSize="15"/>
+                        <FontIcon iconLiteral="mdi2p-plus" iconSize="15" iconColor="aliceblue"/>
                         <Label text="Nouveau fournisseur"
                                style="-fx-text-fill:white;-fx-font-weight:bold;-fx-font-size:13px;"/>
                     </HBox>
@@ -36,10 +36,8 @@
         <HBox spacing="12" alignment="CENTER_LEFT">
             <HBox styleClass="search-bar-box" alignment="CENTER_LEFT"
                   spacing="10" HBox.hgrow="ALWAYS" maxWidth="480">
-                <FontIcon iconLiteral="mdi2m-magnify" iconSize="17"
-                          style="-fx-icon-color:#9ca3af;"/>
                 <TextField fx:id="searchField"
-                           promptText="Rechercher un fournisseur…"
+                           promptText="🔍   Rechercher un fournisseur…"
                            styleClass="search-field-inline"
                            HBox.hgrow="ALWAYS"/>
             </HBox>

@@ -17,8 +17,14 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import org.kordamp.ikonli.javafx.FontIcon;
+import org.kordamp.ikonli.materialdesign2.MaterialDesignA;
+import org.kordamp.ikonli.materialdesign2.MaterialDesignC;
+import org.kordamp.ikonli.materialdesign2.MaterialDesignD;
+import org.kordamp.ikonli.materialdesign2.MaterialDesignI;
+import org.kordamp.ikonli.materialdesign2.MaterialDesignP;
 
 import java.io.IOException;
 import java.util.List;
@@ -50,12 +56,10 @@ public class MaterielsController {
     }
 
     private void configurerFiltres() {
-        // États fixes
         filterEtat.setItems(FXCollections.observableArrayList(
                 "Tous les états", "neuf", "en_service", "en_panne", "reforme"));
         filterEtat.setValue("Tous les états");
 
-        // Catégories chargées depuis la DB
         runAsync(service::findCategories, cats -> {
             List<String> items = new java.util.ArrayList<>();
             items.add("Toutes catégories");
@@ -65,14 +69,14 @@ public class MaterielsController {
             return null;
         });
 
-        searchField.textProperty().addListener((o, ov, nv)   -> filtrer());
+        searchField.textProperty().addListener((o, ov, nv)      -> filtrer());
         filterCategorie.valueProperty().addListener((o, ov, nv) -> filtrer());
-        filterEtat.valueProperty().addListener((o, ov, nv)     -> filtrer());
+        filterEtat.valueProperty().addListener((o, ov, nv)      -> filtrer());
     }
 
     private void configurerTable() {
 
-        // ── Colonne Nom (icône + nom + sous-titre numéro série) ───────────────
+        // ── Colonne Nom ───────────────────────────────────────────────────────
         colNom.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getNom()));
         colNom.setCellFactory(col -> new TableCell<>() {
             @Override protected void updateItem(String item, boolean empty) {
@@ -85,9 +89,11 @@ public class MaterielsController {
                 StackPane iconBox = new StackPane();
                 iconBox.setMinSize(32, 32); iconBox.setMaxSize(32, 32);
                 iconBox.setStyle("-fx-background-color:#e8f0fb;-fx-background-radius:8;");
-                FontIcon icon = new FontIcon("mdi2p-package-variant-closed:14");
-                icon.setStyle("-fx-icon-color:#0154a6;");
-                iconBox.getChildren().add(icon);
+                // ✅ FontIcon.of(enum, size, color) — méthode fiable
+                iconBox.getChildren().add(
+                        FontIcon.of(org.kordamp.ikonli.materialdesign2.MaterialDesignP.PACKAGE_VARIANT_CLOSED,
+                                14, Color.web("#0154a6"))
+                );
 
                 Label nomLbl = new Label(m.getNom() != null ? m.getNom() : "—");
                 nomLbl.setStyle("-fx-font-weight:bold;-fx-font-size:13px;-fx-text-fill:#111827;");
@@ -167,9 +173,10 @@ public class MaterielsController {
                 box.setAlignment(Pos.CENTER_LEFT);
                 box.getChildren().add(qte);
                 if (alerte) {
-                    FontIcon alertIcon = new FontIcon("mdi2a-alert:13");
-                    alertIcon.setStyle("-fx-icon-color:#dc2626;");
-                    box.getChildren().add(alertIcon);
+                    // ✅ MaterialDesignA.ALERT — alerte stock
+                    box.getChildren().add(
+                            FontIcon.of(MaterialDesignA.ALERT_OUTLINE, 13, Color.web("#dc2626"))
+                    );
                 }
                 setGraphic(box); setText(null);
             }
@@ -201,12 +208,14 @@ public class MaterielsController {
                 Materiel m = (Materiel) getTableRow().getItem();
 
                 Button btnEdit = new Button();
-                btnEdit.setGraphic(new FontIcon("mdi2p-pencil-outline:13"));
+                // ✅ MaterialDesignP.PENCIL
+                btnEdit.setGraphic(FontIcon.of(MaterialDesignP.PENCIL_OUTLINE, 13, Color.web("#6b7280")));
                 btnEdit.getStyleClass().add("btn-table-edit");
                 btnEdit.setOnAction(e -> ouvrirFormulaire(m));
 
                 Button btnDel = new Button();
-                btnDel.setGraphic(new FontIcon("mdi2d-delete-outline:13"));
+                // ✅ MaterialDesignD.DELETE
+                btnDel.setGraphic(FontIcon.of(MaterialDesignD.DELETE_OUTLINE, 13, Color.web("#dc2626")));
                 btnDel.getStyleClass().add("btn-table-danger");
                 btnDel.setOnAction(e -> confirmerSuppression(m));
 
@@ -313,9 +322,8 @@ public class MaterielsController {
         StackPane iconCircle = new StackPane();
         iconCircle.setMinSize(52, 52); iconCircle.setMaxSize(52, 52);
         iconCircle.setStyle("-fx-background-radius:50;-fx-background-color:#fee2e2;");
-        FontIcon icon = new FontIcon("mdi2d-delete-outline:24");
-        icon.setStyle("-fx-icon-color:#dc2626;");
-        iconCircle.getChildren().add(icon);
+        // ✅ MaterialDesignD.DELETE
+        iconCircle.getChildren().add(FontIcon.of(MaterialDesignD.DELETE, 24, Color.web("#dc2626")));
 
         Label titre = new Label("Supprimer ce matériel");
         titre.setStyle("-fx-font-size:15px;-fx-font-weight:bold;-fx-text-fill:#111827;");
@@ -330,11 +338,11 @@ public class MaterielsController {
 
         Button btnOui = new Button("Supprimer");
         btnOui.getStyleClass().add("btn-table-danger");
-        btnOui.setStyle(btnOui.getStyle() + "-fx-padding:8 24;-fx-font-size:13px;");
+        btnOui.setStyle("-fx-padding:8 24;-fx-font-size:13px;");
 
         Button btnNon = new Button("Annuler");
         btnNon.getStyleClass().add("btn-secondary");
-        btnNon.setStyle(btnNon.getStyle() + "-fx-padding:8 24;-fx-font-size:13px;");
+        btnNon.setStyle("-fx-padding:8 24;-fx-font-size:13px;");
 
         HBox btns = new HBox(10, btnNon, btnOui);
         btns.setAlignment(Pos.CENTER);
@@ -356,84 +364,64 @@ public class MaterielsController {
         afficherOverlay(overlay);
     }
 
-    // ── Toast haut-droite ──────────────────────────────────────────────────────
+    // ── Toast ──────────────────────────────────────────────────────────────────
     private void afficherToast(String titre, String sousTitre, boolean success) {
         StackPane contentPane = getContentPane();
         if (contentPane == null) return;
 
-        // ── Couleurs selon le type ──
-        String bgColor = success ? "#16a34a" : "#dc2626";      // vert ou rouge
-        String iconLit  = success ? "mdi2c-check-circle-outline:18" : "mdi2c-information-outline:18";
+        String bgColor = success ? "#16a34a" : "#dc2626";
+        // ✅ CHECK_CIRCLE pour succès, INFORMATION pour erreur (I pas C !)
+        org.kordamp.ikonli.Ikon toastIcon = success
+                ? MaterialDesignC.CHECK_CIRCLE
+                : MaterialDesignI.INFORMATION;
 
-        // ── Conteneur principal ──
         VBox toast = new VBox(4);
         toast.setStyle(
-                "-fx-background-color: " + bgColor + ";"
-                        + "-fx-background-radius: 8;"
-                        + "-fx-padding: 12 16 12 16;"
-                        + "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.18), 12, 0, 0, 4);"
+                "-fx-background-color:" + bgColor + ";"
+                        + "-fx-background-radius:8;"
+                        + "-fx-padding:12 16 12 16;"
+                        + "-fx-effect:dropshadow(gaussian,rgba(0,0,0,0.18),12,0,0,4);"
         );
         toast.setMaxWidth(300);
         toast.setMinWidth(240);
         toast.setMaxHeight(40);
 
-        // ── Ligne titre + icône ──
         HBox headerRow = new HBox(10);
         headerRow.setAlignment(Pos.CENTER_LEFT);
 
-        FontIcon icon = new FontIcon(iconLit);
-        icon.setStyle("-fx-icon-color: white;");
+        // ✅ FontIcon.of(enum, size, Color)
+        FontIcon icon = FontIcon.of(toastIcon, 18, Color.WHITE);
 
         Label titleLabel = new Label(titre);
-        titleLabel.setStyle(
-                "-fx-font-weight: bold;"
-                        + "-fx-font-size: 14px;"
-                        + "-fx-text-fill: white;"
-        );
+        titleLabel.setStyle("-fx-font-weight:bold;-fx-font-size:14px;-fx-text-fill:white;");
 
         Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
 
         Button closeBtn = new Button();
-        closeBtn.setGraphic(new FontIcon("mdi2c-close:14"));
-        closeBtn.setStyle(
-                "-fx-background-color: transparent;"
-                        + "-fx-padding: 0;"
-                        + "-fx-cursor: hand;"
-                        + "-fx-border-color: transparent;"
-                        + "-fx-text-fill: white;"
-        );
-        closeBtn.setGraphic(new FontIcon("mdi2c-close:14"));
-        ((FontIcon) closeBtn.getGraphic()).setStyle("-fx-icon-color: white;");
+        // ✅ MaterialDesignC.CLOSE
+        closeBtn.setGraphic(FontIcon.of(MaterialDesignC.CLOSE, 14, Color.WHITE));
+        closeBtn.setStyle("-fx-background-color:transparent;-fx-padding:0;"
+                + "-fx-cursor:hand;-fx-border-color:transparent;");
 
         headerRow.getChildren().addAll(icon, titleLabel, spacer, closeBtn);
 
-        // ── Sous-titre ──
         Label subLabel = new Label(sousTitre);
-        subLabel.setStyle(
-                "-fx-font-size: 12px;"
-                        + "-fx-text-fill: rgba(255,255,255,0.85);"
-                        + "-fx-padding: 0 0 0 28;"       // aligné avec l'icône
-        );
+        subLabel.setStyle("-fx-font-size:12px;-fx-text-fill:rgba(255,255,255,0.85);"
+                + "-fx-padding:0 0 0 28;");
         subLabel.setWrapText(true);
 
-        // ── Assemblage ──
         toast.getChildren().addAll(headerRow, subLabel);
-
-        // ── Position : en haut à droite ──
         StackPane.setAlignment(toast, Pos.TOP_RIGHT);
         StackPane.setMargin(toast, new Insets(16, 16, 0, 0));
-
         contentPane.getChildren().add(toast);
 
-        // ── Animation d'entrée ──
         TranslateTransition slideIn = new TranslateTransition(Duration.millis(250), toast);
         slideIn.setFromX(320); slideIn.setToX(0);
         FadeTransition fadeIn = new FadeTransition(Duration.millis(200), toast);
         fadeIn.setFromValue(0); fadeIn.setToValue(1);
         slideIn.play(); fadeIn.play();
 
-        // ── Fermeture automatique après 3,5s ──
         Runnable fermer = () -> {
             FadeTransition fadeOut = new FadeTransition(Duration.millis(250), toast);
             TranslateTransition slideOut = new TranslateTransition(Duration.millis(250), toast);
@@ -444,7 +432,6 @@ public class MaterielsController {
         };
 
         closeBtn.setOnAction(e -> fermer.run());
-
         PauseTransition pause = new PauseTransition(Duration.seconds(3.5));
         pause.setOnFinished(e -> fermer.run());
         pause.play();

@@ -6,89 +6,51 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.util.List;
 import java.util.function.Consumer;
 
-public class SidebarController {
+public class SidebarIntervenantController {
 
     @FXML private VBox      sidebarRoot;
     @FXML private VBox navContent;
     @FXML private ScrollPane scrollPane;
-    @FXML private HBox      logoBox;
-    @FXML private ImageView logoFull;
-    @FXML private ImageView logoIcon;
-    @FXML private Label     secPrincipal, secAdmin, secCompte;
+    @FXML private ImageView logoFull, logoIcon;
+    @FXML private Label     secPrincipal;
     @FXML private Button    toggleBtn;
     @FXML private FontIcon  toggleIcon;
-    @FXML private Button    btnDashboard, btnMateriels, btnStock, btnDemandes;
-    @FXML private Button    btnAffectations, btnFournisseurs, btnRecherche;
-    @FXML private Button    btnRapports, btnUtilisateurs;
-    @FXML private Button    btnProfil, btnParametres, btnLogout;
+    @FXML private Button    btnDashboard, btnDemandes, btnAffectations, btnProfil;
+    @FXML private Button    btnLogout;
 
-    private boolean collapsed = false;
+    private boolean          collapsed = false;
     private Consumer<String> navigationHandler;
     private Runnable         logoutHandler;
     private List<Button>     allNavButtons;
 
     @FXML
     public void initialize() {
-        allNavButtons = List.of(
-                btnDashboard, btnMateriels, btnStock, btnDemandes,
-                 btnFournisseurs, btnUtilisateurs, btnProfil, btnParametres
-        );
-
-        allNavButtons.forEach(b -> {
-            b.setContentDisplay(javafx.scene.control.ContentDisplay.LEFT);
-            b.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
-            b.setMaxWidth(Double.MAX_VALUE);
-        });
+        allNavButtons = List.of(btnDashboard, btnDemandes, btnAffectations, btnProfil);
+        allNavButtons.forEach(b -> b.setAlignment(javafx.geometry.Pos.CENTER_LEFT));
         btnLogout.setContentDisplay(javafx.scene.control.ContentDisplay.LEFT);
         btnLogout.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
-
-        // Réappliquer les libellés (perdus si jamais remplacés ailleurs)
         btnDashboard.setText("  Tableau de bord");
-        btnMateriels.setText("  Matériels");
-        btnStock.setText("  Stock");
-        btnDemandes.setText("  Demandes");
-        btnFournisseurs.setText("  Fournisseurs");
-        btnUtilisateurs.setText("  Utilisateurs");
-        btnProfil.setText("  Profil");
-        btnParametres.setText("  Paramètres");
-        btnLogout.setText("  Déconnexion");
-
+        btnDemandes.setText("  Mes demandes");
+        btnAffectations.setText("  Mes affectations");
+        btnProfil.setText("  Mon profil");
+        btnLogout.setText("  Deconnexion");
         toggleIcon.setIconLiteral("mdi2m-menu");
-
-        boolean isAdmin = SessionManager.getInstance().isAdmin();
-        secAdmin.setVisible(isAdmin);       secAdmin.setManaged(isAdmin);
-        btnUtilisateurs.setVisible(isAdmin);btnUtilisateurs.setManaged(isAdmin);
-
-        // S'assurer que chaque bouton garde son icône mais peut perdre son label
-        allNavButtons.forEach(b -> b.setAlignment(javafx.geometry.Pos.CENTER_LEFT));
-
-        scrollPane.requestLayout();
     }
 
     @FXML
     private void handleToggle() {
         collapsed = !collapsed;
-
         if (collapsed) {
             sidebarRoot.getStyleClass().add("collapsed");
-
-            // Swap logo : complet → icône seule
             logoFull.setVisible(false); logoFull.setManaged(false);
             logoIcon.setVisible(true);  logoIcon.setManaged(true);
-
-            // Masquer les sections (labels) — gêneraient en mode icône
             secPrincipal.setVisible(false); secPrincipal.setManaged(false);
-            secAdmin.setVisible(false);     secAdmin.setManaged(false);
-            secCompte.setVisible(false);    secCompte.setManaged(false);
-
-            // Boutons : ne garder que l'icône, centrer
             allNavButtons.forEach(b -> {
                 b.setContentDisplay(javafx.scene.control.ContentDisplay.GRAPHIC_ONLY);
                 b.setAlignment(javafx.geometry.Pos.CENTER);
@@ -96,26 +58,16 @@ public class SidebarController {
             });
             btnLogout.setContentDisplay(javafx.scene.control.ContentDisplay.GRAPHIC_ONLY);
             btnLogout.setAlignment(javafx.geometry.Pos.CENTER);
-
             toggleIcon.setIconLiteral("mdi2c-chevron-right");
 
             sidebarRoot.requestLayout();
             navContent.requestLayout();
             scrollPane.requestLayout();
-
         } else {
             sidebarRoot.getStyleClass().remove("collapsed");
-
-            // Swap logo : icône seule → complet
             logoIcon.setVisible(false); logoIcon.setManaged(false);
             logoFull.setVisible(true);  logoFull.setManaged(true);
-
             secPrincipal.setVisible(true); secPrincipal.setManaged(true);
-            boolean isAdmin = SessionManager.getInstance().isAdmin();
-            secAdmin.setVisible(isAdmin);  secAdmin.setManaged(isAdmin);
-            secCompte.setVisible(true);    secCompte.setManaged(true);
-
-            // Restaurer icône + texte
             allNavButtons.forEach(b -> {
                 b.setContentDisplay(javafx.scene.control.ContentDisplay.LEFT);
                 b.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
@@ -123,23 +75,16 @@ public class SidebarController {
             });
             btnLogout.setContentDisplay(javafx.scene.control.ContentDisplay.LEFT);
             btnLogout.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
-
-            // Réappliquer les libellés (perdus si jamais remplacés ailleurs)
             btnDashboard.setText("  Tableau de bord");
-            btnMateriels.setText("  Matériels");
-            btnStock.setText("  Stock");
-            btnFournisseurs.setText("  Fournisseurs");
-            btnUtilisateurs.setText("  Utilisateurs");
-            btnProfil.setText("  Profil");
-            btnParametres.setText("  Paramètres");
-            btnLogout.setText("  Déconnexion");
-
+            btnDemandes.setText("  Mes demandes");
+            btnAffectations.setText("  Mes affectations");
+            btnProfil.setText("  Mon profil");
+            btnLogout.setText("  Deconnexion");
             toggleIcon.setIconLiteral("mdi2m-menu");
 
             sidebarRoot.requestLayout();
             navContent.requestLayout();
             scrollPane.requestLayout();
-
         }
     }
 
@@ -164,7 +109,7 @@ public class SidebarController {
                 .ifPresent(b -> b.getStyleClass().add("active"));
     }
 
-    public void setNavigationHandler(Consumer<String> handler) { this.navigationHandler = handler; }
-    public void setLogoutHandler(Runnable handler)             { this.logoutHandler = handler; }
-    public VBox getRoot()                                       { return sidebarRoot; }
+    public void setNavigationHandler(Consumer<String> h) { this.navigationHandler = h; }
+    public void setLogoutHandler(Runnable h)             { this.logoutHandler = h; }
+    public VBox getRoot()                                { return sidebarRoot; }
 }

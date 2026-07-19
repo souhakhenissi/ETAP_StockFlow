@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.geometry.Insets?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<ScrollPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.controllers.ProfilIntervenantController"
+            styleClass="content-scroll" fitToWidth="true"
+            hbarPolicy="NEVER" vbarPolicy="AS_NEEDED">
+
+    <VBox spacing="24" styleClass="content-area" maxWidth="720">
+
+        <!-- EN-TETE -->
+        <Label text="Mon profil" styleClass="section-title"
+               style="-fx-font-size:20px;"/>
+
+        <!-- CARTE PROFIL -->
+        <VBox styleClass="stat-card" spacing="20">
+
+            <HBox spacing="24" alignment="CENTER_LEFT">
+
+                <!-- Avatar circulaire -->
+                <StackPane fx:id="avatarPane"
+                           style="-fx-background-color:#e8f0fb;-fx-background-radius:50;"
+                           minWidth="90" maxWidth="90"
+                           minHeight="90" maxHeight="90">
+                    <Label fx:id="avatarInitiales" text="??"
+                           style="-fx-font-size:28px;-fx-font-weight:bold;-fx-text-fill:#0154a6;"/>
+                    <ImageView fx:id="avatarImage"
+                               fitWidth="90" fitHeight="90"
+                               preserveRatio="true"
+                               visible="false" managed="false"
+                               style="-fx-background-radius:50;"/>
+                </StackPane>
+
+                <!-- Infos -->
+                <VBox spacing="6" HBox.hgrow="ALWAYS">
+                    <Label fx:id="lblNomComplet" text=""
+                           style="-fx-font-size:20px;-fx-font-weight:bold;-fx-text-fill:#111827;"/>
+                    <HBox spacing="8" alignment="CENTER_LEFT">
+                        <Label fx:id="lblRole" text=""
+                               style="-fx-font-size:12px;-fx-text-fill:#0154a6;-fx-background-color:#e8f0fb;-fx-background-radius:20;-fx-padding:2 10;"/>
+                        <Label fx:id="lblSite" text=""
+                               style="-fx-font-size:12px;-fx-text-fill:#6b7280;"/>
+                    </HBox>
+                </VBox>
+
+                <!-- Bouton changer photo -->
+                <Button fx:id="btnChangerPhoto"
+                        styleClass="btn-secondary"
+                        onAction="#handleChangerPhoto"
+                        style="-fx-padding:8 16;-fx-font-size:12px;">
+                    <graphic>
+                        <HBox spacing="6" alignment="CENTER">
+                            <FontIcon iconLiteral="mdi2c-camera-outline" iconSize="14"/>
+                            <Label text="Changer la photo"
+                                   style="-fx-font-size:12px;"/>
+                        </HBox>
+                    </graphic>
+                </Button>
+            </HBox>
+
+            <!-- Zone webcam (cachée par défaut) -->
+            <VBox fx:id="cameraPane" spacing="10" alignment="CENTER"
+                  visible="false" managed="false">
+                <Separator/>
+                <Label text="Prendre une photo"
+                       style="-fx-font-weight:bold;-fx-font-size:13px;"/>
+                <StackPane style="-fx-background-color:#0d1b3e;-fx-background-radius:10;-fx-padding:4;">
+                    <ImageView fx:id="cameraView"
+                               fitWidth="320" fitHeight="240"
+                               preserveRatio="true"/>
+                </StackPane>
+                <HBox spacing="10" alignment="CENTER">
+                    <Button fx:id="btnStartCamera" text="Demarrer la camera"
+                            styleClass="btn-secondary"
+                            onAction="#startCamera"
+                            style="-fx-padding:7 14;-fx-font-size:12px;"/>
+                    <Button fx:id="btnCapture" text="Capturer"
+                            styleClass="btn-primary"
+                            onAction="#capturePhoto"
+                            style="-fx-padding:7 14;-fx-font-size:12px;"
+                            disable="true"/>
+                    <Button fx:id="btnFermerCamera" text="Annuler"
+                            styleClass="btn-secondary"
+                            onAction="#fermerCamera"
+                            style="-fx-padding:7 14;-fx-font-size:12px;"/>
+                </HBox>
+            </VBox>
+
+        </VBox>
+
+        <!-- MODIFIER EMAIL -->
+        <VBox styleClass="stat-card" spacing="16">
+            <Label text="Adresse email"
+                   style="-fx-font-size:15px;-fx-font-weight:bold;-fx-text-fill:#111827;"/>
+            <Separator/>
+            <VBox spacing="4">
+                <Label text="Nouvelle adresse email" styleClass="form-label"/>
+                <TextField fx:id="emailField" styleClass="form-input"
+                           promptText="votre.email@etap.com.tn"/>
+                <Label fx:id="errEmail" styleClass="field-error"
+                       visible="false" managed="false"/>
+            </VBox>
+            <HBox alignment="CENTER_RIGHT">
+                <Button fx:id="btnSauvegarderEmail"
+                        text="Sauvegarder l'email"
+                        styleClass="btn-primary"
+                        onAction="#handleSauvegarderEmail"
+                        style="-fx-padding:9 20;"/>
+            </HBox>
+        </VBox>
+
+        <!-- MODIFIER MOT DE PASSE -->
+        <VBox styleClass="stat-card" spacing="16">
+            <Label text="Mot de passe"
+                   style="-fx-font-size:15px;-fx-font-weight:bold;-fx-text-fill:#111827;"/>
+            <Separator/>
+
+            <VBox spacing="4">
+                <Label text="Mot de passe actuel *" styleClass="form-label"/>
+                <PasswordField fx:id="ancienMdpField" styleClass="form-input"
+                               promptText="Votre mot de passe actuel"/>
+                <Label fx:id="errAncienMdp" styleClass="field-error"
+                       visible="false" managed="false"/>
+            </VBox>
+
+            <HBox spacing="14">
+                <VBox spacing="4" HBox.hgrow="ALWAYS">
+                    <Label text="Nouveau mot de passe *" styleClass="form-label"/>
+                    <PasswordField fx:id="nouveauMdpField" styleClass="form-input"
+                                   promptText="Min. 8 caracteres"/>
+                    <Label fx:id="errNouveauMdp" styleClass="field-error"
+                           visible="false" managed="false"/>
+                </VBox>
+                <VBox spacing="4" HBox.hgrow="ALWAYS">
+                    <Label text="Confirmer *" styleClass="form-label"/>
+                    <PasswordField fx:id="confirmMdpField" styleClass="form-input"
+                                   promptText="Repeter le mot de passe"/>
+                    <Label fx:id="errConfirmMdp" styleClass="field-error"
+                           visible="false" managed="false"/>
+                </VBox>
+            </HBox>
+
+            <HBox alignment="CENTER_RIGHT">
+                <Button fx:id="btnSauvegarderMdp"
+                        text="Changer le mot de passe"
+                        styleClass="btn-primary"
+                        onAction="#handleSauvegarderMdp"
+                        style="-fx-padding:9 20;"/>
+            </HBox>
+        </VBox>
+
+    </VBox>
+</ScrollPane>

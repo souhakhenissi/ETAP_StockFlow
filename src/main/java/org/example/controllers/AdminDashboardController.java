@@ -25,11 +25,8 @@ public class AdminDashboardController {
             Map.entry("btnDashboard",    new String[]{"admin/dashboard.fxml",              "Tableau de bord"}),
             Map.entry("btnMateriels",    new String[]{"admin/materiels.fxml",            "Matériels"}),
             Map.entry("btnStock",        new String[]{"admin/stock.fxml",                "Stock"}),
-            Map.entry("btnDemandes",     new String[]{"admin/demandes.fxml",             "Demandes"}),
-            Map.entry("btnAffectations", new String[]{"admin/affectations.fxml",         "Affectations"}),
+            Map.entry("btnDemandes",     new String[]{"admin/demandes_admin.fxml",             "Demandes de materiel"}),
             Map.entry("btnFournisseurs", new String[]{"admin/fournisseurs.fxml",         "Fournisseurs"}),
-            Map.entry("btnRecherche",    new String[]{"admin/recherche.fxml",            "Recherche"}),
-            Map.entry("btnRapports",     new String[]{"admin/rapports.fxml",             "Rapports"}),
             Map.entry("btnUtilisateurs", new String[]{"admin/gestion_utilisateurs.fxml", "Utilisateurs"}),
             Map.entry("btnProfil",       new String[]{"admin/profil.fxml",               "Mon profil"}),
             Map.entry("btnParametres",   new String[]{"admin/parametres.fxml",           "Paramètres"})

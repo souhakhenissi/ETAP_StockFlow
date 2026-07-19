@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<ScrollPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.controllers.AdminDemandesController"
+            styleClass="content-scroll" fitToWidth="true"
+            hbarPolicy="NEVER" vbarPolicy="AS_NEEDED">
+
+    <VBox spacing="20" styleClass="content-area">
+
+        <!-- EN-TETE -->
+        <HBox alignment="CENTER_LEFT">
+            <VBox spacing="3" HBox.hgrow="ALWAYS">
+                <Label text="Demandes de materiel" styleClass="section-title"
+                       style="-fx-font-size:20px;"/>
+                <Label text="Creation, suivi et validation des demandes."
+                       styleClass="section-sub"/>
+            </VBox>
+        </HBox>
+
+        <!-- STAT CARDS -->
+        <HBox spacing="14">
+            <VBox styleClass="stat-card" spacing="10" HBox.hgrow="ALWAYS">
+                <HBox spacing="12" alignment="CENTER_LEFT">
+                    <StackPane styleClass="stat-card-icon-box stat-card-icon-box-blue">
+                        <Label text="📋" style="-fx-font-size:18px;"/>
+                    </StackPane>
+                    <VBox spacing="2">
+                        <Label fx:id="cardTotal" text="—" styleClass="stat-card-value"/>
+                        <Label text="Total demandes" styleClass="stat-card-label"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+            <VBox styleClass="stat-card" spacing="10" HBox.hgrow="ALWAYS">
+                <HBox spacing="12" alignment="CENTER_LEFT">
+                    <StackPane styleClass="stat-card-icon-box"
+                               style="-fx-background-color:#fef3c7;">
+                        <Label text="⏳" style="-fx-font-size:18px;"/>
+                    </StackPane>
+                    <VBox spacing="2">
+                        <Label fx:id="cardAttente" text="—" styleClass="stat-card-value"
+                               style="-fx-text-fill:#d97706;"/>
+                        <Label text="En attente" styleClass="stat-card-label"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+            <VBox styleClass="stat-card" spacing="10" HBox.hgrow="ALWAYS">
+                <HBox spacing="12" alignment="CENTER_LEFT">
+                    <StackPane styleClass="stat-card-icon-box stat-card-icon-box-green">
+                        <Label text="✅" style="-fx-font-size:18px;"/>
+                    </StackPane>
+                    <VBox spacing="2">
+                        <Label fx:id="cardApprouvees" text="—" styleClass="stat-card-value"
+                               style="-fx-text-fill:#16a34a;"/>
+                        <Label text="Approuvees" styleClass="stat-card-label"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+            <VBox styleClass="stat-card" spacing="10" HBox.hgrow="ALWAYS">
+                <HBox spacing="12" alignment="CENTER_LEFT">
+                    <StackPane styleClass="stat-card-icon-box stat-card-icon-box-red">
+                        <Label text="❌" style="-fx-font-size:18px;"/>
+                    </StackPane>
+                    <VBox spacing="2">
+                        <Label fx:id="cardRejetees" text="—" styleClass="stat-card-value"
+                               style="-fx-text-fill:#dc2626;"/>
+                        <Label text="Rejetees" styleClass="stat-card-label"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+            <VBox styleClass="stat-card" spacing="10" HBox.hgrow="ALWAYS">
+                <HBox spacing="12" alignment="CENTER_LEFT">
+                    <StackPane styleClass="stat-card-icon-box stat-card-icon-box-purple">
+                        <Label text="📦" style="-fx-font-size:18px;"/>
+                    </StackPane>
+                    <VBox spacing="2">
+                        <Label fx:id="cardLivrees" text="—" styleClass="stat-card-value"
+                               style="-fx-text-fill:#7c3aed;"/>
+                        <Label text="Livrees" styleClass="stat-card-label"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+        </HBox>
+
+        <!-- TABLE -->
+        <TableView fx:id="tableDemandes" styleClass="data-table"
+                   VBox.vgrow="ALWAYS" minHeight="420">
+            <columns>
+                <TableColumn fx:id="colNumero"      text="N"           prefWidth="175"/>
+                <TableColumn fx:id="colDate"        text="DATE"        prefWidth="135"/>
+                <TableColumn fx:id="colIntervenant" text="DEMANDEUR"   prefWidth="150"/>
+                <TableColumn fx:id="colArticles"    text="ARTICLES"    prefWidth="220"/>
+                <TableColumn fx:id="colMotif"       text="MOTIF"       prefWidth="150"/>
+                <TableColumn fx:id="colPriorite"    text="PRIORITE"    prefWidth="95"/>
+                <TableColumn fx:id="colStatut"      text="STATUT"      prefWidth="110"/>
+                <TableColumn fx:id="colActions"     text="ACTIONS"     prefWidth="210"/>
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+            </columnResizePolicy>
+        </TableView>
+
+    </VBox>
+</ScrollPane>

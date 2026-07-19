@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.controllers.DemandeFormController"
+      styleClass="modal-card" spacing="0"
+      maxWidth="620" minWidth="560" maxHeight="500">
+
+    <!-- HEADER -->
+    <HBox styleClass="modal-header" alignment="CENTER_LEFT" spacing="12">
+        <Label fx:id="formTitle" text="Nouvelle demande"
+               styleClass="modal-title" HBox.hgrow="ALWAYS"/>
+        <Button onAction="#handleCancel" styleClass="topbar-icon-btn">
+            <tooltip><Tooltip text="Fermer"/></tooltip>
+        </Button>
+    </HBox>
+
+    <!-- BODY -->
+    <ScrollPane fitToWidth="true" maxHeight="560"
+                style="-fx-background-color:transparent;-fx-background:transparent;"
+                hbarPolicy="NEVER">
+        <VBox styleClass="modal-body" spacing="16">
+
+            <!-- Justification / motif -->
+            <VBox spacing="4">
+                <Label text="Motif / Justification" styleClass="form-label"/>
+                <TextArea fx:id="justificationField" styleClass="form-input"
+                          promptText="Decrivez le besoin..."
+                          prefRowCount="3"
+                          style="-fx-pref-height:80px;"/>
+            </VBox>
+
+            <!-- Priorité -->
+            <VBox spacing="4">
+                <Label text="Priorite" styleClass="form-label"/>
+                <ComboBox fx:id="prioriteCombo" styleClass="filter-combo"
+                          maxWidth="Infinity"/>
+                <Label fx:id="errPriorite" styleClass="field-error"
+                       visible="false" managed="false"/>
+            </VBox>
+
+            <!-- Articles demandés -->
+            <VBox spacing="8">
+                <Label text="Articles demandes" styleClass="form-label"/>
+
+                <!-- Container dynamique des lignes d'articles -->
+                <VBox fx:id="articlesContainer" spacing="8"/>
+
+                <!-- Bouton ajouter article -->
+                <Button fx:id="btnAjouterArticle" text="+ Ajouter un article"
+                        styleClass="btn-secondary"
+                        onAction="#handleAjouterArticle"
+                        style="-fx-padding:7 16;-fx-font-size:12px;"/>
+
+                <Label fx:id="errArticles" styleClass="field-error"
+                       visible="false" managed="false"/>
+            </VBox>
+
+        </VBox>
+    </ScrollPane>
+
+    <!-- FOOTER -->
+    <HBox styleClass="modal-footer" spacing="10" alignment="CENTER_RIGHT">
+        <Button text="Annuler" styleClass="btn-secondary"
+                onAction="#handleCancel" style="-fx-padding:9 24;"/>
+        <Button fx:id="saveBtn" text="Envoyer la demande"
+                styleClass="btn-primary" onAction="#handleSave"
+                style="-fx-padding:9 24;"/>
+    </HBox>
+
+</VBox>

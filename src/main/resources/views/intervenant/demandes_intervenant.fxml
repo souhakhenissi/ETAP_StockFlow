@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<ScrollPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.controllers.IntervenantDemandesController"
+            styleClass="content-scroll" fitToWidth="true"
+            hbarPolicy="NEVER" vbarPolicy="AS_NEEDED">
+
+    <VBox spacing="20" styleClass="content-area">
+
+        <!-- EN-TETE -->
+        <HBox alignment="CENTER_LEFT">
+            <VBox spacing="3" HBox.hgrow="ALWAYS">
+                <Label text="Mes demandes" styleClass="section-title"
+                       style="-fx-font-size:20px;"/>
+                <Label text="Creation et suivi de vos demandes de materiel."
+                       styleClass="section-sub"/>
+            </VBox>
+            <Button fx:id="btnNouvelleDemande" text="+ Nouvelle demande"
+                    styleClass="btn-primary"
+                    onAction="#handleNouvelleDemande"/>
+        </HBox>
+
+        <!-- TABLE -->
+        <TableView fx:id="tableDemandes" styleClass="data-table"
+                   VBox.vgrow="ALWAYS" minHeight="420">
+            <columns>
+                <TableColumn fx:id="colNumero"   text="N"          prefWidth="175"/>
+                <TableColumn fx:id="colDate"     text="DATE"       prefWidth="140"/>
+                <TableColumn fx:id="colArticles" text="ARTICLES"   prefWidth="240"/>
+                <TableColumn fx:id="colMotif"    text="MOTIF"      prefWidth="180"/>
+                <TableColumn fx:id="colPriorite" text="PRIORITE"   prefWidth="100"/>
+                <TableColumn fx:id="colStatut"   text="STATUT"     prefWidth="110"/>
+                <TableColumn fx:id="colActions"  text="ACTIONS"    prefWidth="190"/>
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+            </columnResizePolicy>
+        </TableView>
+
+    </VBox>
+</ScrollPane>

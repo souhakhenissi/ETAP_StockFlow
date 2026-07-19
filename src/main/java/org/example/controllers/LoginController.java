@@ -170,15 +170,16 @@ public class LoginController {
         try {
             String fxml = u.isAdmin()
                     ? "/views/admin/dashboard.fxml"
-                    : "/views/intervenant/dashboard.fxml";
+                    : "/views/intervenant/dashboard_intervenant.fxml";
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
             Scene scene = new Scene(loader.load());
             scene.getStylesheets().add(
                     getClass().getResource("/styles/main.css").toExternalForm());
             Stage stage = (Stage) loginButton.getScene().getWindow();
             stage.setScene(scene);
-            stage.setTitle("ETAP StockFlow — " +
-                    (u.isAdmin() ? "Administration" : "Espace Intervenant"));
+            stage.setTitle("ETAP StockFlow — "
+                    + (u.isAdmin() ? "Administration" : "Espace Intervenant"));
             stage.setMaximized(true);
         } catch (IOException ex) {
             showError("Impossible de charger le tableau de bord.");

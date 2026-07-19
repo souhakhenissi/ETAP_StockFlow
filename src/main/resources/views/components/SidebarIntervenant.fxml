@@ -5,9 +5,10 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.geometry.Insets?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
+
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:id="sidebarRoot"
-      fx:controller="org.example.controllers.SidebarController"
+      fx:controller="org.example.controllers.SidebarIntervenantController"
       styleClass="sidebar">
 
     <!-- ══ LOGO ══ -->
@@ -43,29 +44,15 @@
                 <graphic><FontIcon iconLiteral="mdi2v-view-dashboard-outline" iconSize="18"/></graphic>
                 <tooltip><Tooltip text="Tableau de bord"/></tooltip>
             </Button>
-            <Button fx:id="btnMateriels" styleClass="sidebar-nav-item" maxWidth="Infinity" onAction="#nav">
-                <graphic><FontIcon iconLiteral="mdi2p-package-variant-closed" iconSize="18"/></graphic>
-                <tooltip><Tooltip text="Matériels"/></tooltip>
-            </Button>
-            <Button fx:id="btnStock" styleClass="sidebar-nav-item" maxWidth="Infinity" onAction="#nav">
-                <graphic><FontIcon iconLiteral="mdi2a-archive-outline" iconSize="18"/></graphic>
-                <tooltip><Tooltip text="Stock"/></tooltip>
-            </Button>
+
             <Button fx:id="btnDemandes" styleClass="sidebar-nav-item" maxWidth="Infinity" onAction="#nav">
                 <graphic><FontIcon iconLiteral="mdi2f-file-document-outline" iconSize="18"/></graphic>
-                <tooltip><Tooltip text="Demandes"/></tooltip>
-            </Button>
-            <Button fx:id="btnFournisseurs" styleClass="sidebar-nav-item" maxWidth="Infinity" onAction="#nav">
-                <graphic><FontIcon iconLiteral="mdi2t-truck-outline" iconSize="18"/></graphic>
-                <tooltip><Tooltip text="Fournisseurs"/></tooltip>
+                <tooltip><Tooltip text="Mes demandes"/></tooltip>
             </Button>
 
-            <!-- ADMINISTRATION -->
-            <Label fx:id="secAdmin" text="ADMINISTRATION" styleClass="sidebar-section"/>
-
-            <Button fx:id="btnUtilisateurs" styleClass="sidebar-nav-item" maxWidth="Infinity" onAction="#nav">
-                <graphic><FontIcon iconLiteral="mdi2a-account-group-outline" iconSize="18"/></graphic>
-                <tooltip><Tooltip text="Utilisateurs"/></tooltip>
+            <Button fx:id="btnAffectations" styleClass="sidebar-nav-item" maxWidth="Infinity" onAction="#nav">
+                <graphic><FontIcon iconLiteral="mdi2a-account-arrow-right-outline" iconSize="18"/></graphic>
+                <tooltip><Tooltip text="Mes affectations"/></tooltip>
             </Button>
 
             <!-- COMPTE -->
@@ -73,11 +60,7 @@
 
             <Button fx:id="btnProfil" styleClass="sidebar-nav-item" maxWidth="Infinity" onAction="#nav">
                 <graphic><FontIcon iconLiteral="mdi2a-account-outline" iconSize="18"/></graphic>
-                <tooltip><Tooltip text="Profil"/></tooltip>
-            </Button>
-            <Button fx:id="btnParametres" styleClass="sidebar-nav-item" maxWidth="Infinity" onAction="#nav">
-                <graphic><FontIcon iconLiteral="mdi2c-cog-outline" iconSize="18"/></graphic>
-                <tooltip><Tooltip text="Paramètres"/></tooltip>
+                <tooltip><Tooltip text="Mon profil"/></tooltip>
             </Button>
 
         </VBox>

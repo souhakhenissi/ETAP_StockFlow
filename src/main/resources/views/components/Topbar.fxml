@@ -1,38 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.geometry.Insets?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
 <HBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="org.example.controllers.TopbarController"
       styleClass="topbar" alignment="CENTER_LEFT" spacing="12">
 
-<!-- Titre page (mis à jour par le dashboard) -->
-<Label fx:id="pageTitle" text="" styleClass="topbar-page-title" HBox.hgrow="ALWAYS"/>
-<Region HBox.hgrow="ALWAYS"/>
+    <!-- Titre page -->
+    <Label fx:id="pageTitle" text="" styleClass="topbar-page-title"
+           HBox.hgrow="ALWAYS"/>
+    <Region HBox.hgrow="ALWAYS"/>
 
-<!-- Notifications -->
-<StackPane>
-    <Button text="🔔" styleClass="topbar-icon-btn" onAction="#handleNotif"/>
-    <Label fx:id="notifBadge" text="2" styleClass="notif-badge"
-           style="-fx-translate-x:10;-fx-translate-y:-10;" visible="false"/>
-</StackPane>
-
-<!-- Theme toggle -->
-<Button fx:id="themeBtn" text="🌙" styleClass="topbar-icon-btn" onAction="#toggleTheme"/>
-
-<!-- Séparateur -->
-<Separator orientation="VERTICAL" prefHeight="32"
-           style="-fx-padding: 0 4;"/>
-
-<!-- Avatar + Nom -->
-<HBox spacing="10" alignment="CENTER">
-    <StackPane styleClass="topbar-avatar">
-        <Label fx:id="avatarInitials" text="A" styleClass="topbar-avatar-text"/>
+    <!-- Notifications -->
+    <StackPane>
+        <Button fx:id="notifBtn" styleClass="topbar-icon-btn" onAction="#handleNotif">
+            <graphic>
+                <FontIcon iconLiteral="mdi2b-bell-outline" iconSize="18"/>
+            </graphic>
+        </Button>
+        <Label fx:id="notifBadge" text="0" styleClass="notif-badge"
+               style="-fx-translate-x:10;-fx-translate-y:-10;"
+               visible="false"/>
     </StackPane>
-    <VBox spacing="1" alignment="CENTER_LEFT">
-        <Label fx:id="userName" text="" styleClass="topbar-user-name"/>
-        <Label fx:id="userRole" text="" styleClass="topbar-user-role"/>
-    </VBox>
-</HBox>
+
+    <!-- Theme toggle -->
+    <Button fx:id="themeBtn" styleClass="topbar-icon-btn" onAction="#toggleTheme">
+        <graphic>
+            <FontIcon fx:id="themeIcon"
+                      iconLiteral="mdi2m-moon-waning-crescent" iconSize="18"/>
+        </graphic>
+    </Button>
+
+    <Separator orientation="VERTICAL" prefHeight="32"/>
+
+    <!-- Avatar + Nom -->
+    <HBox spacing="10" alignment="CENTER">
+        <!-- StackPane : initiales OU photo de profil -->
+        <StackPane fx:id="topbarAvatarPane" styleClass="topbar-avatar">
+            <Label fx:id="avatarInitials" text="A"
+                   styleClass="topbar-avatar-text"/>
+            <!-- Photo de profil (cachée si pas de photo) -->
+            <ImageView fx:id="topbarAvatarImage"
+                       fitWidth="36" fitHeight="36"
+                       preserveRatio="false"
+                       visible="false" managed="false"
+                       style="-fx-background-radius:50;"/>
+        </StackPane>
+        <VBox spacing="1" alignment="CENTER_LEFT">
+            <Label fx:id="userName" text="" styleClass="topbar-user-name"/>
+            <Label fx:id="userRole" text="" styleClass="topbar-user-role"/>
+        </VBox>
+    </HBox>
 
 </HBox>
